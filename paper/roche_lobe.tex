@@ -22,6 +22,8 @@
 \affiliation{University of California Observatories, UC Santa Cruz, Santa Cruz, CA 95064, USA}
 \email{xavier@ucolick.org}
 
+\correspondingauthor{James Guillochon}
+
 \begin{abstract}
 The volume-equivalent radius $R_{\rm L}$ of the critical Roche lobe has no known closed form in the mass ratio, and binary-evolution codes rely on fitting formulae, most commonly that of \citet{Eggleton1983}. We establish the exact analytic structure of $R_{\rm L}(q_{\rm E})$, $q_{\rm E}=M_1/M_2$, at both ends of the mass-ratio range. In the dominant-star limit $q_{\rm E}\to\infty$ the lobe becomes the critical surface of a uniformly rotating point mass, whose volume we evaluate in closed form: $R_{\rm L}/a\to R_0=[3\sqrt3-4+3\ln(6-3\sqrt3)]^{1/3}=0.814\,885\,68$. The leading correction is logarithmic, $R_{\rm L}/a=R_0-Kq_{\rm E}^{-2/3}\ln q_{\rm E}+O(q_{\rm E}^{-2/3})$ with $K=3^{-1/6}/(2R_0^2)=0.626\,984$ exactly; the logarithm arises because the equator of the limiting surface is a ring of critical points. In the Hill limit $q_{\rm E}\to0$ the lobe surface is $\rho=(2/m)\sin(\tfrac13\arcsin m)$ in Hill radii, and $R_{\rm L}/a=C\,t\,[1+a_1t+a_{3/2}t^{3/2}+O(t^2)]$ with $t=q_{\rm E}^{1/3}$, $C=0.493\,306\,23$, $a_1=-0.264\,750$ and $a_{3/2}=8\pi/(81V_{\rm H})=0.205\,681$; the half-integer power originates at the $L_2$ saddle. A reference solution accurate to 13 significant figures over $10^{-6}\le q_{\rm E}\le10^6$ shows that the Eggleton formula owes its robustness to the correct $q_{\rm E}^{-2/3}\ln q_{\rm E}$ structure, while two recent refits with free exponents lose the exact $q_{\rm E}^{1/3}$ scaling and err by $4$--$7\%$ at extreme mass ratios, exceeding the Eggleton formula's error already at Jupiter-like mass ratios. Imposing the exact asymptotics on an Eggleton-type form yields a six-coefficient formula with maximum error $0.018\%$ over twelve decades of mass ratio; its derivative, which governs mass-transfer stability, is accurate to $0.2\%$, versus $7\%$ (with sign changes across the classical range) for the Eggleton formula.
 \end{abstract}
@@ -371,7 +373,7 @@ The planetary and extreme-mass-ratio regime has been served by the wrong numbers
 Two coefficients remain analytically open: $c_2$ in equation~(\ref{eq:logexp}), which requires the nonlinear inner solution near the critical ring, and $a_2$ in equation~(\ref{eq:hillexp}). Neither affects the results above.
 
 \begin{acknowledgments}
-This paper was primarily authored by AI using Claude Fable 5.1 and Grok 4.6, with only light editing by the authors.
+This paper was primarily authored by AI using Claude Fable 5.1 and Grok 4.6, with only light editing by the authors.\footnote{The \LaTeX\ source, figure scripts, and reference table are at \url{https://github.com/guillochon/roche-lobe}.}
 \end{acknowledgments}
 
 \software{NumPy \citep{numpy2020}, SciPy \citep{scipy2020}, SymPy \citep{sympy2017}, mpmath \citep{mpmath}, Matplotlib \citep{matplotlib2007}.}
