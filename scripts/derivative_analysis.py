@@ -9,11 +9,13 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-HERE = os.path.dirname(os.path.abspath(__file__))
+from paths import PAPER
+
+HERE = str(PAPER)
 D = json.load(open(os.path.join(HERE, "analysis.json"), encoding="utf-8"))
 R0, K, C, A0, E0 = D["R0"], D["K"], D["C"], D["A0"], D["E0"]
 A1, A32 = D["a1"], D["a32"]
-C2 = -1.1
+C2 = D["c2"]
 P1, P3 = np.array(D["p1"]), np.array(D["p3"])
 
 plt.rcParams.update({
@@ -168,10 +170,10 @@ def main():
     im4 = np.argmin(np.abs(qE - 1e-4))
     r_large = Dref[i4] - D_large(qE[i4])
     r_small = Dref[im4] - D_small(qE[im4])
-    r_large_fit = Dref[i4] - D_large(qE[i4], c2=-D["c2_logside"])
+    r_large_fit = Dref[i4] - D_large(qE[i4], c2=D["c2"])
     print("=== asymptotic residuals (D_ref - D_asym) ===")
-    print(f"qE=1e4  D_ref={Dref[i4]:.8f}  asym(c2=-1.1)={float(D_large(qE[i4])):.8f}  residual={r_large:.3e}")
-    print(f"qE=1e4  asym(c2={-D['c2_logside']:.4f}) residual={r_large_fit:.3e}")
+    print(f"qE=1e4  D_ref={Dref[i4]:.8f}  asym(c2 exact)={float(D_large(qE[i4])):.8f}  residual={r_large:.3e}")
+    print(f"qE=1e4  asym(c2={D['c2']:.4f}) residual={r_large_fit:.3e}")
     print(f"qE=1e-4 D_ref={Dref[im4]:.8f}  asym={float(D_small(qE[im4])):.8f}  residual={r_small:.3e}")
     if abs(r_large) > 2e-3 or abs(r_small) > 5e-4:
         raise SystemExit("asymptotic check failed; stop and fix delta/sign")
@@ -244,7 +246,10 @@ def main():
     axR0.plot(lqR, R, "k.", ms=3, label="reference (this work)")
     axR0.plot(lqR, F3(P3, t_R), "C3-", lw=0.8, label="Eq. (fit), 6 parameters")
     axR0.axhline(R0, color="0.5", ls=":", lw=0.7)
-    axR0.text(-5.8, R0 + 0.015, r"$R_0=0.81489$", fontsize=7, color="0.4")
+    axR0.text(
+        3.4, R0 + 0.035, r"$R_0=0.81489$", fontsize=7, color="0.4",
+        bbox=dict(facecolor="white", alpha=0.8, edgecolor="none", pad=1.15),
+    )
     lq2 = np.linspace(-6, -3, 50)
     axR0.plot(lq2, C * 10 ** (lq2 / 3), color="0.5", ls=":", lw=0.7)
     axR0.text(-5.5, 0.09, r"$C\,q_E^{1/3}$", fontsize=7, color="0.4")
@@ -331,12 +336,26 @@ def main():
             zfmt = f"{zr:.2f}"
         else:
             zfmt = f"{zr:.1f}"
+        if abs(q - 1e3) < 1e-12:
+            pct_strs = []
+            for i, p in enumerate(pcts):
+                s = fmt_pct(p)
+                if names[i] == "Leahy":
+                    s = s + r"\tablenotemark{a}"
+                pct_strs.append(s)
+        else:
+            pct_strs = [fmt_pct(p) for p in pcts]
         lines.append(
             f"{fmt_q(q)} & {Dr:.6f} & "
-            + " & ".join(fmt_pct(p) for p in pcts)
+            + " & ".join(pct_strs)
             + f" & {zfmt} \\\\"
         )
     lines.append(r"\enddata")
+    lines.append(
+        r"\tablenotetext{a}{Outside the Leahy \& Leahy (2015) calibration "
+        r"$0.01\le q\le 100$ ($10^{-2}\le\qE\le10^{2}$); the $+22\%$ is the "
+        r"onset of the large-$\qE$ divergence, not a mid-range residual.}"
+    )
     lines.append(r"\end{deluxetable}")
     tex = os.path.join(HERE, "table_derivative.tex")
     with open(tex, "w", encoding="utf-8") as f:

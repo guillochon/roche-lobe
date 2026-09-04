@@ -1,5 +1,4 @@
 import json
-from pathlib import Path
 
 import numpy as np
 import matplotlib
@@ -9,13 +8,15 @@ from matplotlib import cm
 from scipy.optimize import brentq
 
 from fast import xL1, zeta, Rsurf
+from paths import PAPER
 
-HERE = Path(__file__).resolve().parent
+HERE = PAPER
 plt.rcParams.update({'font.size': 8, 'axes.labelsize': 9, 'legend.fontsize': 7, 'font.family': 'serif',
                      'mathtext.fontset': 'dejavuserif', 'axes.linewidth': 0.6, 'lines.linewidth': 1.0})
 D = json.load(open(HERE / 'analysis.json'))
 R0, K, C, A0, E0 = D['R0'], D['K'], D['C'], D['A0'], D['E0']
 a1, a32, a2 = D['a1'], D['a32'], D['a2']
+c2 = D['c2']
 qE = np.array(D['qE']); R = np.array(D['R']); t = qE**(1/3)
 
 def surf(q, TH, PH):
@@ -70,7 +71,7 @@ for a, ttl, yl in zip(ax, ['orbital plane ($z=0$)', 'meridional plane ($y=0$)'],
     a.set_aspect('equal'); a.set_xlabel('$x/a$'); a.set_ylabel(yl); a.set_title(ttl, fontsize=9)
     a.set_xlim(-1.1, 1.15); a.set_ylim(-1.1, 1.1); a.axhline(0, color='0.85', lw=0.5, zorder=0); a.axvline(0, color='0.85', lw=0.5, zorder=0)
 h,l = ax[0].get_legend_handles_labels(); fig.legend(h,l,loc='lower center',ncol=4,frameon=False,handlelength=1.6,bbox_to_anchor=(0.5,-0.01),fontsize=6.4)
-fig.tight_layout(rect=(0,0.08,1,1)); fig.savefig('fig_sections.pdf'); plt.close(fig)
+fig.tight_layout(rect=(0,0.08,1,1)); fig.savefig(HERE / 'fig_sections.pdf'); plt.close(fig)
 
 # ---------------- Fig 2: 3-D surfaces ----------------
 from matplotlib.colors import LightSource, Normalize
@@ -89,7 +90,7 @@ for k, qe in enumerate([0.01, 1, 100]):
     rgb = cm.RdBu_r(norm(pct)); rgb = ls.shade_rgb(rgb[..., :3], Z, blend_mode='soft', vert_exag=1)
     axs.plot_surface(X, Y, Z, facecolors=rgb, rstride=1, cstride=1, linewidth=0, antialiased=False, shade=False)
     L = 1.02*x1; axs.set_xlim(-L, L); axs.set_ylim(-L, L); axs.set_zlim(-L, L)
-    axs.set_box_aspect((1, 1, 1)); axs.view_init(elev=20, azim=-115)
+    axs.set_box_aspect((1, 1, 1)); axs.view_init(elev=18, azim=-60)
     mappable = cm.ScalarMappable(norm=norm, cmap=cm.RdBu_r); mappable.set_array([])
     cb = fig.colorbar(mappable, ax=axs, shrink=0.55, pad=0.08, orientation='horizontal')
     cb.set_label(r'$(R-R_{\rm L})/R_{\rm L}$ (\%)', fontsize=6); cb.ax.tick_params(labelsize=5)
@@ -97,7 +98,7 @@ for k, qe in enumerate([0.01, 1, 100]):
     axs.set_xlabel('$x/a$', labelpad=-4); axs.set_ylabel('$y/a$', labelpad=-4); axs.set_zlabel('$z/a$', labelpad=-4)
     axs.tick_params(labelsize=5, pad=-2)
 fig.subplots_adjust(left=0.0, right=1.0, top=0.93, bottom=0.0, wspace=0.0)
-fig.savefig('fig_surface3d.png', dpi=300); plt.close(fig)
+fig.savefig(HERE / 'fig_surface3d.png', dpi=300); plt.close(fig)
 
 # ---------------- Fig 3: exact limiting shapes ----------------
 def rho_pert(nx, nz, eps):
@@ -127,7 +128,7 @@ for a, (lab, nxf, nzf, yl) in zip(ax[1:], [(r'$\xi$–$\eta$ plane', np.cos(phi)
     a.annotate('$L_2$', (-1.0, 0), xytext=(-0.95, 0.55), fontsize=7, arrowprops=dict(arrowstyle='-', lw=0.5))
 h2,l2 = ax[1].get_legend_handles_labels(); fig.legend(h2,l2,loc='lower center',ncol=3,frameon=False,fontsize=6.5,bbox_to_anchor=(0.62,-0.01))
 for a in ax: a.set_aspect('equal'); a.set_xlim(-1.15, 1.15); a.set_ylim(-1.0, 1.0)
-fig.tight_layout(rect=(0,0.07,1,1)); fig.savefig('fig_limits.pdf'); plt.close(fig)
+fig.tight_layout(rect=(0,0.07,1,1)); fig.savefig(HERE / 'fig_limits.pdf'); plt.close(fig)
 
 # ---------------- Fig 4: fits (standalone; the paper uses fig_fits_deriv.pdf) ----------------
 def F3(p, t):
@@ -137,7 +138,9 @@ fig, ax = plt.subplots(2, 1, figsize=(3.5, 4.6), sharex=True, gridspec_kw=dict(h
 lq = np.log10(qE)
 ax[0].plot(lq, R, 'k.', ms=3, label='reference (this work)')
 ax[0].plot(lq, F3(D['p3'], t), 'C3-', lw=0.8, label='Eq. (fit), 6 parameters')
-ax[0].axhline(R0, color='0.5', ls=':', lw=0.7); ax[0].text(-5.8, R0+0.015, r'$R_0=0.81489$', fontsize=7, color='0.4')
+ax[0].axhline(R0, color='0.5', ls=':', lw=0.7)
+ax[0].text(3.4, R0 + 0.035, r'$R_0=0.81489$', fontsize=7, color='0.4',
+           bbox=dict(facecolor='white', alpha=0.8, edgecolor='none', pad=1.15))
 lq2 = np.linspace(-6, -3, 50); ax[0].plot(lq2, C*10**(lq2/3), color='0.5', ls=':', lw=0.7)
 ax[0].text(-5.5, 0.09, r'$C\,q_E^{1/3}$', fontsize=7, color='0.4')
 ax[0].set_ylabel('$R_L/a$'); ax[0].legend(frameon=False, loc='lower right'); ax[0].set_ylim(0, 0.9)
@@ -149,30 +152,54 @@ ax[1].set_yscale('symlog', linthresh=0.05, linscale=0.8); ax[1].axhline(0, color
 ax[1].set_ylim(-5, 8); ax[1].set_yticks([-4, -1, -0.1, 0, 0.1, 1, 4]); ax[1].set_yticklabels(['$-4$', '$-1$', '$-0.1$', '0', '0.1', '1', '4'])
 ax[1].axvspan(-2, 2, color='0.92', zorder=0); ax[1].text(-1.9, 4.5, 'classical\nfit range', fontsize=6, color='0.4')
 ax[1].set_xlabel(r'$\log_{10} q_E$,  $q_E=M_1/M_2$'); ax[1].set_ylabel('relative error (%)'); ax[1].legend(frameon=False, fontsize=6, loc='lower right', ncol=1)
-fig.savefig('fig_fits.pdf', bbox_inches='tight'); plt.close(fig)
+fig.savefig(HERE / 'fig_fits.pdf', bbox_inches='tight'); plt.close(fig)
 
 # ---------------- Fig 5: asymptotics ----------------
+legend_kw = dict(frameon=True, facecolor='white', framealpha=0.8,
+                 edgecolor='none', fontsize=6.4, labelspacing=0.32)
 fig, ax = plt.subplots(1, 2, figsize=(7.0, 2.6))
+# high-qE points computed with the reference integrator (npts=120)
+qe_ext = np.array([1e7, 1e8, 1e9])
+R_ext = np.array([0.814689932014, 0.814836734593, 0.814873679389])
 m = qE >= 30
-x = np.log(qE[m]); y = (R0 - R[m])*qE[m]**(2/3)
+qe_a = np.concatenate([qE[m], qe_ext]); R_a = np.concatenate([R[m], R_ext])
+x = np.log(qe_a); y = (R0 - R_a)*qe_a**(2/3)
 ax[0].plot(x, y, 'k.', ms=4, label='reference')
-xs = np.linspace(2, 15, 50)
-# y = K ln qE + c2 + (c3 + c3L ln qE) qE^{-1/3}; stored c2_logside = -c2
-two = K*xs - D['c2_logside']
-ax[0].plot(xs, two, 'C3-', lw=0.9, label=r'$K\ln q_E - c_2$ ($K$ exact, $c_2$ fitted)')
+xs = np.linspace(2, 21, 80)
+# y = K ln qE + c2 + (c3 + c3L ln qE) qE^{-1/3}
+two = K*xs + c2
+ax[0].plot(xs, two, 'C3-', lw=0.9, label=r'$K\ln q_E + c_2$ (both exact)')
 ax[0].plot(xs, two + (D['c3'] + D['c3L']*xs)*np.exp(-xs/3), 'C3--', lw=0.9,
            label=r'+ fitted $O(q_E^{-1/3})$ terms')
 qe_ = np.exp(xs); egg_ = 0.49*qe_**(2/3)/(0.6*qe_**(2/3)+np.log(1+qe_**(1/3))); ax[0].plot(xs, (R0-egg_)*qe_**(2/3), 'C0--', lw=0.9, label='Eggleton (1983) formula')
-ax[0].set_xlabel(r'$\ln q_E$'); ax[0].set_ylabel(r'$(R_0-R_L/a)\,q_E^{2/3}$'); ax[0].legend(frameon=False, fontsize=6, loc='lower left')
+ax[0].set_xlabel(r'$\ln q_E$'); ax[0].set_ylabel(r'$(R_0-R_L/a)\,q_E^{2/3}$')
+ax[0].legend(loc='lower left', **legend_kw)
 ax[0].set_title(r'dominant-star limit $q_E\to\infty$', fontsize=8)
+# local-slope inset: d[(R0-RL) qE^{2/3}]/d ln qE vs 1/ln qE
+m_s = qe_a >= 1e4
+xs_s, ys_s = np.log(qe_a[m_s]), y[m_s]
+sl_s = np.gradient(ys_s, xs_s)
+axins = ax[0].inset_axes([0.30, 0.52, 0.28, 0.38])
+axins.plot(1 / xs_s, sl_s, 'k.', ms=3)
+axins.axhline(K, color='C3', lw=0.7)
+axins.axhline(0.454, color='C0', ls='--', lw=0.7)
+axins.set_xlim(0, 0.12); axins.set_ylim(0.40, 0.70)
+axins.set_xlabel('')
+axins.set_ylabel('')
+axins.tick_params(labelsize=5, pad=1.2, direction='in')
+axins.set_xticks([0, 0.06, 0.12])
+axins.set_yticks([0.45, 0.55, 0.65])
+for sp in axins.spines.values():
+    sp.set_linewidth(0.6)
+axins.patch.set_alpha(0.95)
 qs = np.array(D['qs']); Rs = np.array(D['Rs']); qq = np.concatenate([qs, qE[qE <= 1e-3]]); RR = np.concatenate([Rs, R[qE <= 1e-3]]); tt = qq**(1/3)
 yy = (RR/(C*tt) - 1)/tt
 ax[1].plot(tt, yy, 'k.', ms=4, label='reference')
 ts = np.linspace(0, 0.06, 200)
 ax[1].axhline(a1, color='C0', ls='--', lw=0.9, label=r'$a_1$ (analytic)')
 ax[1].plot(ts, a1 + a32*np.sqrt(ts), 'C2-.', lw=0.9, label=r'$a_1+a_{3/2}\sqrt{t}$ (analytic)')
-ax[1].plot(ts, a1 + a32*np.sqrt(ts) + a2*ts + D['a52']*ts**1.5, 'C3-', lw=0.9, label=r'$+\,a_2 t + a_{5/2}t^{3/2}$ (fitted)')
+ax[1].plot(ts, a1 + a32*np.sqrt(ts) + a2*ts + D['a52']*ts**1.5, 'C3-', lw=0.9, label=r'$+\,a_2 t$ (exact) $+\,a_{5/2}t^{3/2}$ (fitted)')
 ax[1].set_xlabel(r'$t=q_E^{1/3}$'); ax[1].set_ylabel(r'$[R_L/(C a t)-1]/t$'); ax[1].set_xlim(0, 0.06); ax[1].set_ylim(-0.27, -0.228)
-ax[1].legend(frameon=False, fontsize=6, loc='lower right'); ax[1].set_title(r'Hill limit $q_E\to0$', fontsize=8)
-fig.tight_layout(); fig.savefig('fig_asymptotics.pdf'); plt.close(fig)
+ax[1].legend(loc='lower right', **legend_kw); ax[1].set_title(r'Hill limit $q_E\to0$', fontsize=8)
+fig.tight_layout(); fig.savefig(HERE / 'fig_asymptotics.pdf'); plt.close(fig)
 print("figures done")

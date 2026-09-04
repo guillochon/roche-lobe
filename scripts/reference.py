@@ -3,6 +3,7 @@ Units G=M1=a=1, q = M2/M1 (companion / lobe-star), omega^2 = 1+q.  Output uses q
 Extended precision (np.longdouble, 80-bit) throughout the root finding; composite Gauss-Legendre in angle."""
 import numpy as np, time, sys
 from scipy.optimize import brentq
+from paths import PAPER
 LD = np.longdouble
 
 def zeta(R, lam, gam, q):
@@ -81,7 +82,7 @@ if __name__ == "__main__":
             print(f"qE={qE:8.0e}  R(100)={r[0]:.18f}  d(100-200)={abs(r[0]-r[1]):.1e}  d(200-400)={abs(r[1]-r[2]):.1e}  |R-Rz|(400)={abs(vals[2][0]-vals[2][1]):.1e}", flush=True)
     elif mode == "table":
         lq = np.linspace(-6, 6, 73); t0 = time.time()
-        with open("reference_table.txt", "w") as f:
+        with open(PAPER / "reference_table.txt", "w") as f:
             f.write("# q_E=M1/M2   R_L/a (extended precision, npts=300)   R_L/a via von Zeipel identity   x_L1/a\n")
             for l in lq:
                 qE = 10.0**l; V, Vz, x1, *_ = lobe(1/qE, 300)

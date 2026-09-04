@@ -17,7 +17,7 @@
 \affiliation{Independent Researcher}
 \email[show]{guillochon@gmail.com}
 
-\author[orcid=0000-0002-7738-6875,gname=Jason,sname=Prochaska]{Jason X. Prochaska}
+\author[orcid=0000-0002-7738-6875,gname=Jason,sname=Prochaska]{J. Xavier Prochaska}
 \affiliation{Department of Astronomy and Astrophysics, University of California, Santa Cruz, CA 95064, USA}
 \affiliation{University of California Observatories, UC Santa Cruz, Santa Cruz, CA 95064, USA}
 \email{xavier@ucolick.org}
@@ -25,23 +25,23 @@
 \correspondingauthor{James Guillochon}
 
 \begin{abstract}
-The volume-equivalent radius $R_{\rm L}$ of the critical Roche lobe has no known closed form in the mass ratio, and binary-evolution codes rely on fitting formulae, most commonly that of \citet{Eggleton1983}. We establish the exact analytic structure of $R_{\rm L}(q_{\rm E})$, $q_{\rm E}=M_1/M_2$, at both ends of the mass-ratio range. In the dominant-star limit $q_{\rm E}\to\infty$ the lobe becomes the critical surface of a uniformly rotating point mass, whose volume we evaluate in closed form: $R_{\rm L}/a\to R_0=[3\sqrt3-4+3\ln(6-3\sqrt3)]^{1/3}=0.814\,885\,68$. The leading correction is logarithmic, $R_{\rm L}/a=R_0-Kq_{\rm E}^{-2/3}\ln q_{\rm E}+O(q_{\rm E}^{-2/3})$ with $K=3^{-1/6}/(2R_0^2)=0.626\,984$ exactly; the logarithm arises because the equator of the limiting surface is a ring of critical points. In the Hill limit $q_{\rm E}\to0$ the lobe surface is $\rho=(2/m)\sin(\tfrac13\arcsin m)$ in Hill radii, and $R_{\rm L}/a=C\,t\,[1+a_1t+a_{3/2}t^{3/2}+O(t^2)]$ with $t=q_{\rm E}^{1/3}$, $C=0.493\,306\,23$, $a_1=-0.264\,750$ and $a_{3/2}=8\pi/(81V_{\rm H})=0.205\,681$; the half-integer power originates at the $L_2$ saddle. A reference solution accurate to 13 significant figures over $10^{-6}\le q_{\rm E}\le10^6$ shows that the Eggleton formula owes its robustness to the correct $q_{\rm E}^{-2/3}\ln q_{\rm E}$ structure, while two recent refits with free exponents lose the exact $q_{\rm E}^{1/3}$ scaling and err by $4$--$7\%$ at extreme mass ratios, exceeding the Eggleton formula's error already at Jupiter-like mass ratios. Imposing the exact asymptotics on an Eggleton-type form yields a six-coefficient formula with maximum error $0.018\%$ over twelve decades of mass ratio; its derivative, which governs mass-transfer stability, is accurate to $0.2\%$, versus $7\%$ (with sign changes across the classical range) for the Eggleton formula.
+The volume-equivalent radius $R_{\rm L}$ of the critical Roche lobe has no known closed form in the mass ratio, and binary-evolution codes rely on fitting formulae, most commonly that of Eggleton. We establish the exact analytic structure of $R_{\rm L}(q_{\rm E})$, $q_{\rm E}=M_1/M_2$, at both ends of the mass-ratio range. In the dominant-star limit $q_{\rm E}\to\infty$ the lobe becomes the critical surface of a uniformly rotating point mass, whose volume we evaluate in closed form: \mbox{$R_{\rm L}/a\to R_0=[3\sqrt3-4+3\ln(6-3\sqrt3)]^{1/3}=0.814\,885\,68$}. The leading correction is logarithmic, \mbox{$R_{\rm L}/a=R_0-Kq_{\rm E}^{-2/3}\ln q_{\rm E}-c_2 q_{\rm E}^{-2/3}+\cdots$} with \mbox{$K=3^{-1/6}/(2R_0^2)=0.626\,984$} and $c_2=-0.98319$ in closed form; the logarithm arises because the equator of the limiting surface is a ring of critical points. In the Hill limit $q_{\rm E}\to0$ the lobe surface is \mbox{$\rho=(2/m)\sin(\tfrac13\arcsin m)$} in Hill radii, and \mbox{$R_{\rm L}/a=C\,t\,[1+a_1t+a_{3/2}t^{3/2}+a_2t^2+O(t^{5/2})]$} with $t=q_{\rm E}^{1/3}$, $C=0.493\,306\,23$, $a_1=-0.264\,750$, \mbox{$a_{3/2}=8\pi/(81V_{\rm H})=0.205\,681$} and $a_2=-0.348\,082$; the half-integer power originates at the $L_2$ saddle. A reference solution with absolute error below $10^{-13}$ in $R_{\rm L}/a$ over $10^{-6}\le q_{\rm E}\le10^6$ shows that the Eggleton formula owes its robustness to the correct \mbox{$q_{\rm E}^{-2/3}\ln q_{\rm E}$} structure, while the Leahy \& Leahy (2015) and Qi et al.\ (2026) refits lose the exact $q_{\rm E}^{1/3}$ scaling and err by $4$--$7\%$ at extreme mass ratios. Imposing the exact asymptotics on an Eggleton-type form yields a six-coefficient formula with maximum error $0.018\%$ over twelve decades of mass ratio; its derivative, which governs mass-transfer stability, is accurate to $0.2\%$, versus $7\%$ for the Eggleton formula.
 \end{abstract}
 
 \keywords{Roche lobe (1422) --- Close binary stars (254) --- Celestial mechanics (211) --- Analytical mathematics (38)}
 
 \section{Introduction}\label{sec:intro}
 
-The critical equipotential passing through the inner Lagrange point $L_1$ bounds the Roche lobe of each component of a synchronously rotating circular binary, and the volume-equivalent radius $\RL=(3V/4\pi)^{1/3}$ of that lobe is the quantity that stellar-evolution and population-synthesis codes compare with the stellar radius to decide when mass transfer begins. The lobe volume must be obtained numerically: the position of $L_1$ is a root of a quintic, and the lobe surface is defined implicitly. Tabulations were given by \citet{Kopal1959}, \citet{PlavecKratochvil1964} and \citet{Mochnacki1984}, and approximations by \citet{Paczynski1971} and \citet{Eggleton1983}, the latter being the formula in near-universal use,
+The critical equipotential passing through the inner Lagrange point $L_1$ bounds the Roche lobe of each component of a synchronously rotating circular binary, and the volume-equivalent radius $\RL=(3V/4\pi)^{1/3}$ of that lobe is the quantity that stellar-evolution and population-synthesis codes compare with the stellar radius to decide when mass transfer begins. The lobe volume must be obtained numerically: the position of $L_1$ is a root of a quintic, and $\RL(\qE)$ has no known closed form. The equipotential surface itself does admit an algebraic parametrization. \citet{Hure2026} reduces a given Jacobi level (a ``Hill surface'' in the classical restricted-three-body sense, not the $\qE\to0$ Hill approximation below) to a depressed cubic in the distance to the companion, so that the azimuth follows from the law of cosines (his eqs.~3--6). That slicing yields $\varphi(r,\theta)$, not the ray-wise radius $R(\theta,\varphi)$ that enters $V=\tfrac13\oint R^3\,\dd\Omega$, and it does not evaluate the enclosed volume. What remains numerical is the quadrature for $V$ and, in a ray-based integrator, the one-dimensional root for $R$ along each direction. Tabulations were given by \citet{Kopal1959}, \citet{PlavecKratochvil1964} and \citet{Mochnacki1984}, and approximations by \citet{Paczynski1971} and \citet{Eggleton1983}, the latter being the formula in near-universal use,
 \begin{equation}
 \frac{\RL}{a}\simeq\frac{0.49\,\qE^{2/3}}{0.6\,\qE^{2/3}+\ln\!\left(1+\qE^{1/3}\right)},\qquad \qE=\frac{M_1}{M_2},
 \label{eq:eggleton}
 \end{equation}
 where $M_1$ is the star whose lobe is described and $a$ is the separation. Eggleton reported his integrations to be accurate to five or more significant figures and the fit to be accurate to better than $1\%$ for all $\qE$. Subsequent work has refined the numerics and the fits \citep{Morris1994,LeahyLeahy2015,Qi2026}, extended the problem to asynchronous and eccentric orbits \citep{Sepinsky2007}, and treated the outer critical surfaces \citep{Marchant2021,Qi2026}. Series expansions for the radius of equipotential surfaces were given by \citet{PathaniaMedupe2012}, and \citet{Seidov2004} noted that the $L_1$ problem is exactly solvable in the inverse direction: the mass ratio is a rational function of the $L_1$ position.
 
-The general consensus, restated most recently by \citet{Qi2026}, is that no closed form exists. That is correct for arbitrary mass ratio, but it leaves open two questions that this paper addresses. First, what {\em is} the exact analytic structure of $\RL(\qE)$? We show that it is not a power series in $\qE^{1/3}$ at either end: there is a logarithm in the dominant-star limit and a half-integer power in the Hill limit, and both leading non-analytic coefficients can be obtained exactly. Second, how good are the fits, and why? With the exact asymptotics in hand we find that Eggleton's logarithm, introduced as a smoothing device, reproduces the true asymptotic structure, which explains the formula's robustness; conversely, the recent refits that liberate its exponents \citep{LeahyLeahy2015,Qi2026} destroy the exact $\qE^{1/3}$ scaling and, although more accurate than Eggleton in the range over which they were calibrated, fail badly outside it, including for planetary mass ratios.
+The general consensus, restated most recently by \citet{Qi2026}, is that no closed form exists for $\RL(\qE)$. That is correct for arbitrary mass ratio (\citet{Hure2026} parametrizes the surface, not its volume), but it leaves open two questions that this paper addresses. First, what {\em is} the exact analytic structure of $\RL(\qE)$? We show that it is not a power series in $\qE^{1/3}$ at either end: there is a logarithm in the dominant-star limit and a half-integer power in the Hill limit, and both leading non-analytic coefficients can be obtained exactly. Second, how good are the fits, and why? With the exact asymptotics in hand we find that Eggleton's logarithm, introduced as a smoothing device, reproduces the true asymptotic structure, which explains the formula's robustness; conversely, the recent refits that liberate its exponents \citep{LeahyLeahy2015,Qi2026} destroy the exact $\qE^{1/3}$ scaling and, although more accurate than Eggleton in the range over which they were calibrated, fail badly outside it, including for planetary mass ratios.
 
-Section~\ref{sec:exact} collects exact results: the unsolvability of the $L_1$ quintic, the closed form of the dominant-star limit, and the exact Hill-lobe surface. Section~\ref{sec:asym} derives the asymptotic expansions. Section~\ref{sec:num} describes a reference solution accurate to 13 significant figures and its validation. Section~\ref{sec:fits} evaluates existing formulae and presents new ones constrained by the exact asymptotics. Section~\ref{sec:disc} discusses the implications for fitting formulae, mass-transfer stability, and the planetary regime. Section~\ref{sec:summary} summarizes.
+Section~\ref{sec:exact} collects exact results: the unsolvability of the $L_1$ quintic, the closed form of the dominant-star limit, and the exact Hill-lobe surface. Section~\ref{sec:asym} derives the asymptotic expansions. Section~\ref{sec:num} describes a reference solution with absolute error below $10^{-13}$ in $\RL/a$ and its validation. Section~\ref{sec:fits} evaluates existing formulae and presents new ones constrained by the exact asymptotics. Section~\ref{sec:disc} discusses the implications for fitting formulae, mass-transfer stability, and the planetary regime. Section~\ref{sec:summary} summarizes.
 
 \section{The Roche problem and exact results}\label{sec:exact}
 
@@ -55,7 +55,7 @@ We place $M_1$ at the origin, $M_2$ at $x=a$, and measure lengths in units of $a
 \end{split}
 \label{eq:zeta}
 \end{equation}
-where $q=M_2/M_1$ and $\zeta=-a\Phi/GM_1$ up to an additive constant. The Roche lobe of $M_1$ is the connected component around the origin of $\{\zeta\ge\zeta_{L_1}\}$. Equation~(\ref{eq:zeta}) is written with $q=M_2/M_1$ because that is the natural variable for the algebra; all results are reported in Eggleton's variable $\qE=M_1/M_2=1/q$, so that $\qE\to\infty$ is the limit in which the lobe belongs to the dominant star and $\qE\to0$ is the Hill limit.
+where $q=M_2/M_1$ and $\zeta=-a\Phi/GM_1$ up to an additive constant. The Roche lobe of $M_1$ is the connected component around the origin of $\{\zeta\ge\zeta_{L_1}\}$. Equation~(\ref{eq:zeta}) and the $L_1$ algebra of equations~(\ref{eq:quintic})--(\ref{eq:seidov}) are written with $q=M_2/M_1$ because that is the natural variable for those polynomials. Everywhere else we report results in Eggleton's variable $\qE=M_1/M_2=1/q$, and we write $1/\qE$ rather than $q$ whenever the companion-to-lobe mass ratio appears in the text, so that $\qE\to\infty$ is the limit in which the lobe belongs to the dominant star and $\qE\to0$ is the Hill limit. When we quote \citet{LeahyLeahy2015} we state their $q=M_2/M_1$ explicitly.
 
 \subsection{The $L_1$ quintic}
 
@@ -64,38 +64,38 @@ Along the $x$-axis the condition $\partial_x\zeta=0$ gives
 (1+q)x^5-(3q+2)x^4+(3q+1)x^3-x^2+2x-1=0,
 \label{eq:quintic}
 \end{equation}
-whose root in $(0,1)$ is $x_{L_1}$. The statement that this equation ``admits no closed-form solution'' is folklore; we make it precise. For $q\in\{2,\tfrac12,3\}$ the polynomial is irreducible over $\mathbb Q$ and its Galois group, computed with \textsc{SymPy} \citep{sympy2017}, has order 120, i.e., it is the full symmetric group $S_5$, which is not solvable \citep{Cox2012}. Since specialization can only shrink the Galois group, the generic group over $\mathbb Q(q)$ is also $S_5$, and $x_{L_1}$ is not expressible in radicals for generic $q$. This does not preclude exceptional mass ratios. \citet{Seidov2004} inverted equation~(\ref{eq:quintic}),
+whose root in $(0,1)$ is $x_{L_1}$. The statement that this equation ``admits no closed-form solution'' is folklore; we make it precise. For $q=2$ (and likewise $q=\tfrac12$ and $q=3$) the polynomial is irreducible over $\mathbb Q$ and $x_{L_1}$ is not expressible in radicals: its Galois group, computed with \textsc{SymPy} \citep{sympy2017}, has order 120 and is the full symmetric group $S_5$, which is not solvable \citep{Cox2012}. By Hilbert irreducibility, all but a thin set of rational specializations retain Galois group $S_5$, so the group over $\mathbb Q(q)$ is $S_5$ \citep{Cox2012}. Degenerate specializations exist. \citet{Seidov2004} inverted equation~(\ref{eq:quintic}),
 \begin{equation}
 q=\frac{(1-x)^3(1+x+x^2)}{x^3(x^2-3x+3)},\qquad x=x_{L_1},
 \label{eq:seidov}
 \end{equation}
-so that every rational $x\in(0,1)$ corresponds to a rational $q$ for which $L_1$ is rational and the remaining quartic factor is solvable (Table~\ref{tab:rational}). Equation~(\ref{eq:seidov}) also provides an exact parametrization of the whole problem by $x_{L_1}$ in place of $q$.
+so that every rational $x\in(0,1)$ corresponds to a rational $q$ for which $L_1$ is rational and the remaining quartic factor is solvable (Table~\ref{tab:rational}; Galois group $D_4$ at $x=1/2$, and $S_4$ at the other listed points). Equation~(\ref{eq:seidov}) also provides an exact parametrization of the whole problem by $x_{L_1}$ in place of $q$.
 
-\begin{deluxetable}{cccc}
+\begin{deluxetable}{ccc}
 \tablecaption{Mass ratios with rational $L_1$ positions, from equation~(\ref{eq:seidov}). For each, equation~(\ref{eq:quintic}) factors into a linear and a solvable quartic factor.\label{tab:rational}}
-\tablehead{\colhead{$x_{L_1}/a$} & \colhead{$q=M_2/M_1$} & \colhead{$\qE=M_1/M_2$} & \colhead{Galois group of quartic}}
+\tablehead{\colhead{$x_{L_1}/a$} & \colhead{$q=M_2/M_1$} & \colhead{$\qE=M_1/M_2$}}
 \startdata
-$1/2$ & $1$        & $1$          & order 8 \\
-$1/3$ & $104/19$   & $19/104$     & order 24 \\
-$2/3$ & $19/104$   & $104/19$     & order 24 \\
-$1/4$ & $567/37$   & $37/567$     & solvable \\
-$3/4$ & $37/567$   & $567/37$     & solvable \\
-$1/5$ & $1984/61$  & $61/1984$    & solvable \\
+$1/2$ & $1$        & $1$          \\
+$1/3$ & $104/19$   & $19/104$     \\
+$2/3$ & $19/104$   & $104/19$     \\
+$1/4$ & $567/37$   & $37/567$     \\
+$3/4$ & $37/567$   & $567/37$     \\
+$1/5$ & $1984/61$  & $61/1984$    \\
 \enddata
 \end{deluxetable}
 
 \subsection{An exact integral identity}\label{sec:vonzeipel}
 
-In the corotating frame $\nabla^2\Phi=4\pi G\rho-2\omega^2$ \citep{vonZeipel1924}. Integrating over the Roche lobe of $M_1$, which contains only that mass, and applying the divergence theorem gives
+In the corotating frame $\nabla^2\Phi=4\pi G\rho-2\omega^2$ \citep{vonZeipel1924}, with $\omega^2=G(M_1+M_2)/a^3$. Integrating over the Roche lobe of $M_1$, which contains only that mass, and applying the divergence theorem gives
 \begin{equation}
 \oint_{\partial V}|\geff|\,\dd A=4\pi GM_1-2\omega^2V,
 \label{eq:vz}
 \end{equation}
-where $\geff=-\nabla\Phi$ is the effective gravity, which is normal to the equipotential. This is the relation underlying the ``effective mass'' $M(1-\omega^2/2\pi G\bar\rho)$ in the von~Zeipel theorem for rotating stars, applied here to a binary lobe. It states that the volume, surface area and mean effective gravity of a Roche lobe are not independent, which provides a check on tabulations \citep{Mochnacki1984} and, as shown in Section~\ref{sec:num}, an independent functional for validating numerical volumes.
+where $\geff=-\nabla\Phi$ is the effective gravity, which is normal to the equipotential. The integrand vanishes at the conical point $L_1$, but $|\geff|$ grows linearly with distance from $L_1$ along the surface while $\dd A$ vanishes as the first power of that distance, so $|\geff|\,\dd A$ is integrable and the surface integral is well defined. This is the relation underlying the ``effective mass'' $M(1-\omega^2/2\pi G\bar\rho)$ in the von~Zeipel theorem for rotating stars, applied here to a binary lobe. It states that the volume, surface area and mean effective gravity of a Roche lobe are not independent, which provides a check on tabulations \citep{Mochnacki1984} and, as shown in Section~\ref{sec:num}, an independent functional for validating numerical volumes.
 
 \subsection{The dominant-star limit $\qE\to\infty$}\label{sec:limit_inf}
 
-As $q\to0$ the companion's gravity vanishes, the centre of mass moves to $M_1$, $\omega^2\to GM_1/a^3$, and $L_1\to x=a$. Equation~(\ref{eq:zeta}) reduces to $1/R+\tfrac12R^2\sin^2\theta$, the potential of a uniformly rotating point mass, and the critical value is $\zeta_{L_1}=3/2$. The limiting lobe is therefore the critical Roche surface of a rotating star \citep{Maeder2009}, with equatorial radius $a$ and polar radius $2a/3$. Setting $u=\theta/3$ turns the defining cubic into $\sin3u=\sin\theta$, whose relevant root is
+As $\qE\to\infty$ the companion's gravity vanishes, the centre of mass moves to $M_1$, $\omega^2\to GM_1/a^3$, and $L_1\to x=a$. Equation~(\ref{eq:zeta}) reduces to $1/R+\tfrac12R^2\sin^2\theta$, the potential of a uniformly rotating point mass, and the critical value is $\zeta_{L_1}=3/2$. The limiting lobe is therefore the critical Roche surface of a rotating star \citep{Maeder2009}, with equatorial radius $a$ and polar radius $2a/3$. Setting $u=\theta/3$ turns the defining cubic into $\sin3u=\sin\theta$, whose relevant root is
 \begin{equation}
 \frac{r(\theta)}{a}=\frac{2}{1+2\cos(2\theta/3)},\qquad 0\le\theta\le\frac\pi2,
 \label{eq:rlimit}
@@ -113,11 +113,11 @@ R_0\equiv\lim_{\qE\to\infty}\frac{\RL}{a}&=\left[3\sqrt3-4+3\ln\!\left(6-3\sqrt3
 \end{split}
 \label{eq:R0}
 \end{equation}
-\citet{Eggleton1983} tabulated this limit numerically as $0.8149$; equation~(\ref{eq:R0}) closes the form. The value $0.8154$ quoted by \citet{Qi2026} is in error by $0.06\%$, and the asymptote $0.49/0.6=0.8167$ of equation~(\ref{eq:eggleton}) is $0.22\%$ high.
+\citet{Eggleton1983} tabulated this limit numerically as $0.8149$; equation~(\ref{eq:R0}) closes the form. The value $0.8154$ quoted by \citet{Qi2026} is in error by $0.06\%$, and the asymptote $0.49/0.6=0.8167$ of equation~(\ref{eq:eggleton}) is $0.22\%$ high. The same cubic at a general level $c\ge\tfrac32$ has the regular integral representation of equation~(\ref{eq:Vc}), the exact volume of a Roche-model star at arbitrary rotation, which we have not found in the literature.
 
 \subsection{The Hill limit $\qE\to0$}\label{sec:limit_hill}
 
-As $q\to\infty$ the lobe shrinks around $M_1$ and the problem reduces to Hill's \citep{Hill1878,MurrayDermott1999}. With the Hill radius $r_{\rm H}=a\,[M_1/3(M_1+M_2)]^{1/3}$, coordinates $(\xi,\eta,\zeta)$ in units of $r_{\rm H}$ ($\xi$ toward $M_2$, $\zeta$ along the rotation axis) and $\rho^2=\xi^2+\eta^2+\zeta^2$, the leading-order potential is
+As $\qE\to0$ the lobe shrinks around $M_1$ and the problem reduces to Hill's \citep{Hill1878,MurrayDermott1999}. With the Hill radius $r_{\rm H}=a\,[M_1/3(M_1+M_2)]^{1/3}$, coordinates $(\xi,\eta,\zeta)$ in units of $r_{\rm H}$ ($\xi$ toward $M_2$, $\zeta$ along the rotation axis) and $\rho^2=\xi^2+\eta^2+\zeta^2$, the leading-order potential is
 \begin{equation}
 U_0=\frac3\rho+\frac{3\xi^2-\zeta^2}{2},
 \label{eq:U0}
@@ -127,10 +127,10 @@ with saddle points at $\xi=\pm1$ where $U_0=9/2$. Along a ray with direction cos
 \rho(\hat{\bm n})=\frac{2}{m}\sin\!\left(\frac{\arcsin m}{3}\right),
 \label{eq:hillsurf}
 \end{equation}
-with $\sin\to\sinh$ and $\arcsin\to\operatorname{arcsinh}$ when $m^2<0$, and $\rho=2/3$ on the cone $m=0$. The axis radii are $1$, $2/3$ and $0.637\,834$ $r_{\rm H}$ along $\xi$, $\eta$ and $\zeta$. The volume does not reduce to elementary functions, but equation~(\ref{eq:hillsurf}) allows it to be evaluated to arbitrary precision by quadrature without root finding:
+with $\sin\to\sinh$ and $\arcsin\to\operatorname{arcsinh}$ when $m^2<0$, and $\rho=2/3$ on the cone $m=0$. The axis radii are $1$, $2/3$ and $0.637\,834$ $r_{\rm H}$ along $\xi$, $\eta$ and $\zeta$. Equation~(\ref{eq:hillsurf}) is the leading-order Hill potential along a ray from $M_1$, a different cubic from the full CRTBP inversion of \citet{Hure2026}, which parametrizes $\varphi(r,\theta)$ at finite mass ratio and does not take the $\qE\to0$ limit. The enclosed volume does not reduce to elementary functions, but equation~(\ref{eq:hillsurf}) allows the dimensionless Hill-lobe volume $V_{\rm H}\equiv V/r_{\rm H}^3$ to be evaluated to arbitrary precision by quadrature without root finding:
 \begin{align}
-V_{\rm H}&=1.508\,549\,856\,131\,113\,r_{\rm H}^3,\\
-\kappa&\equiv\frac{\RL}{r_{\rm H}}=\left(\frac{3V_{\rm H}}{4\pi r_{\rm H}^3}\right)^{1/3}=0.711\,470\,699\,909\,853,
+V_{\rm H}&=1.508\,549\,856\,131\,113,\\
+\kappa&\equiv\frac{\RL}{r_{\rm H}}=\left(\frac{3V_{\rm H}}{4\pi}\right)^{1/3}=0.711\,470\,699\,909\,853,
 \end{align}
 so that
 \begin{equation}
@@ -148,14 +148,16 @@ The coefficient $0.49$ in equation~(\ref{eq:eggleton}) is $0.67\%$ low. The ofte
 
 \section{Asymptotic expansions}\label{sec:asym}
 
+Both expansions below are regular in the bulk of the lobe and fail in a local region whose geometry supplies the non-analytic term. As $\qE\to\infty$ the outer solution is the rotating-star surface of Section~\ref{sec:limit_inf}, perturbed at $O(\epsilon^2)$; the singular region is the critical equatorial ring, which produces the logarithm. As $\qE\to0$ the outer solution is the Hill lobe of Section~\ref{sec:limit_hill} plus the octupole; the singular region is the $L_2$ saddle, lifted off the surface, which produces the half-integer power.
+
 \subsection{$\qE\to\infty$: a logarithmic correction}\label{sec:asym_log}
 
-Let $\epsilon=(q/3)^{1/3}=(3\qE)^{-1/3}$. From equation~(\ref{eq:quintic}), $x_{L_1}=1-\epsilon+O(\epsilon^2)$: the inner Lagrange point recedes from the companion by its Hill radius. Substituting into equation~(\ref{eq:zeta}) gives the critical potential
+Let $\epsilon=(3\qE)^{-1/3}$. From equation~(\ref{eq:quintic}), $x_{L_1}=1-\epsilon+O(\epsilon^2)$: the inner Lagrange point recedes from the companion by its Hill radius. Substituting into equation~(\ref{eq:zeta}) gives the critical potential
 \begin{equation}
 \zeta_{L_1}=\frac32+\frac92\epsilon^2+O(\epsilon^3),
 \label{eq:zc}
 \end{equation}
-which the numerical solution confirms ($[\zeta_{L_1}-3/2]/\epsilon^2=4.4997$ at $\qE=10^9$). The perturbation of the potential itself, $q(1/r_2-x)+\tfrac q2(x^2+y^2)$, is $O(\epsilon^3)$ except within a distance $O(\epsilon)$ of the companion, so to $O(\epsilon^2)$ the lobe is the level set $\zeta_0=\zeta_{L_1}$ of the unperturbed potential. To first order the surface moves inward by $\delta\zeta_{L_1}/|\nabla\zeta_0|$, and
+which the numerical solution confirms ($[\zeta_{L_1}-3/2]/\epsilon^2=4.4997$ at $\qE=10^9$). The perturbation of the potential itself, $\qE^{-1}(1/r_2-x)+\tfrac12\qE^{-1}(x^2+y^2)$, is $O(\epsilon^3)$ except within a distance $O(\epsilon)$ of the companion, so to $O(\epsilon^2)$ the lobe is the level set $\zeta_0=\zeta_{L_1}$ of the unperturbed potential, excluding an $O(\epsilon)$ neighbourhood of the companion where the lobe is cut off by the companion's Hill sphere (volume $O(\epsilon^3)$, which does not enter the $\epsilon^2\ln(1/\epsilon)$ balance). To first order the surface moves inward by $\delta\zeta_{L_1}/|\nabla\zeta_0|$, and
 \begin{equation}
 \delta V=-\delta\zeta_{L_1}\oint\frac{\dd A}{|\nabla\zeta_0|}.
 \label{eq:dV}
@@ -176,9 +178,28 @@ with
 K=\frac{3^{-1/6}}{2R_0^2}=0.626\,983\,95 .
 \label{eq:K}
 \end{equation}
-The coefficient $c_2$ depends on the nonlinear inner solution near the ring and is not obtained by this argument; fits to the reference solution with $K$ held fixed give $c_2=-1.1\pm0.1$, the uncertainty reflecting the unknown form of the next terms.
+The coefficient $c_2$ follows from the exact volume function of the axisymmetric potential. The substitution $\sin3u=\kappa^{-1/2}\sin\varphi$, $\kappa=(2c/3)^3$, in the cubic of Appendix~\ref{app:R0} gives the volume enclosed by any level $c\ge\tfrac32$ as a regular one-dimensional integral,
+\begin{equation}
+V(c)=\frac{32\pi}{3\kappa}\int_0^{\pi/2}\frac{\sin\varphi\,\dd\varphi}{\big[3-4\sin^2\!\big(\tfrac13\arcsin(\kappa^{-1/2}\sin\varphi)\big)\big]^3},
+\label{eq:Vc}
+\end{equation}
+whose expansion about the critical level is $V=V_0+\tfrac{2\pi}{\sqrt3}\,\delta\ln\delta+\beta\,\delta+O(\delta^2\ln\delta)$ with $\delta=\tfrac92\epsilon^2$. The logarithmic coefficient reproduces $K$ independently, and $\beta$, obtained to 25 digits by Richardson extrapolation and identified by an integer-relation search, is
+\begin{equation}
+\beta=\frac{\pi}{\sqrt3}\Big[10+8\ln(2+\sqrt3)-6\ln6\Big]-\frac{16\pi}{3}=0.993\,058\,876,
+\end{equation}
+so that
+\begin{equation}
+\begin{split}
+c_2&=-\frac{3^{1/3}}{8R_0^2}\Bigl\{\sqrt3\bigl[10-8\ln2-\tfrac{10}{3}\ln3\\
+&\qquad+8\ln(2+\sqrt3)\bigr]-16\Bigr\}=-0.983\,192\,566.
+\end{split}
+\label{eq:c2}
+\end{equation}
+With $K$ and $c_2$ fixed, the remainder of the reference solution over $\qE\ge10^3$ is fitted by $\{\qE^{-1}\ln\qE,\qE^{-1},\qE^{-4/3}\ln\qE\}$ to $4\times10^{-4}$, and displacing $c_2$ by $\pm0.04$ degrades this by factors of $3$--$5$.
 
-Figure~\ref{fig:asym}a tests equation~(\ref{eq:logexp}): $(R_0-\RL/a)\qE^{2/3}$ is linear in $\ln\qE$ with the predicted slope. Quantitatively, fitting $R_0-\RL/a$ over $10^4\le\qE\le10^6$ with the basis $\{\qE^{-2/3}\ln\qE,\qE^{-2/3},\qE^{-1},\qE^{-1}\ln\qE\}$ returns a log coefficient of $0.641$ when free; fixing it at $K$ and fitting the remainder leaves residuals of $0.03\%$ of the signal, and displacing $K$ by $\pm0.01$ degrades the residuals by factors of $2$--$4$. A basis of integer powers of $\qE^{-1/3}$ without a logarithm fails at the $100\%$ level.
+Two inner regions could have shifted $K$ or produced a further logarithm, and neither does. In the scaled coordinate $Z=z/\epsilon$ the inner problem on the ring is a regular perturbation whose far-field expansion is a constant plus inverse powers of $Z$; a logarithm in that expansion would generate an $\epsilon^2\ln^2(1/\epsilon)$ term or a finite renormalisation of $K$, and the local slope of Figure~\ref{fig:asym}a approaches $K$ with neither. A second inner region surrounds the companion, which sits on the ring: within $O(\epsilon)$ of it the perturbation $\qE^{-1}(1/r_2-x)$ is comparable to $\delta\zeta_{L_1}$, so the linearisation fails there for a second reason. That region's volume is the companion's Hill sphere, $O(\epsilon^3)$, and enters $\RL/a$ only at $O(\qE^{-1})$.
+
+Figure~\ref{fig:asym}a tests equation~(\ref{eq:logexp}): $(R_0-\RL/a)\qE^{2/3}$ is linear in $\ln\qE$ with the predicted slope $K$, while the Eggleton formula has the same form with slope $0.454$. Quantitatively, fitting $R_0-\RL/a$ over $10^4\le\qE\le10^6$ with the basis $\{\qE^{-2/3}\ln\qE,\qE^{-2/3},\qE^{-1},\qE^{-1}\ln\qE\}$ returns a log coefficient of $0.641$ when free; fixing it at $K$ and fitting the remainder leaves residuals of $0.03\%$ of the signal, and displacing $K$ by $\pm0.01$ degrades the residuals by factors of $2$--$4$. The free-fit discrepancy is the slow approach of a log series: over $10^6\le\qE\le10^9$ the same two-term fit gives slope $0.634$, and the local slope $\dd[(R_0-\RL/a)\qE^{2/3}]/\dd\ln\qE$ falls from $0.636$ at $\qE=10^{6.5}$ to $0.631$ at $10^{8.5}$ (inset of Figure~\ref{fig:asym}a). A basis of integer powers of $\qE^{-1/3}$ without a logarithm fails at the $100\%$ level.
 
 Expanding equation~(\ref{eq:eggleton}) at large $\qE$ gives $0.8167-0.454\,\qE^{-2/3}\ln\qE+\ldots$. Eggleton's $\ln(1+\qE^{1/3})$, introduced to smooth the derivative of Paczy\'nski's piecewise formula, thus has the correct functional form; its coefficient is $28\%$ low and its constant $0.22\%$ high, and the two errors partly cancel over the fitted range. This is the reason a three-coefficient formula from 1983 remains accurate to $1\%$ for all mass ratios.
 
@@ -188,7 +209,7 @@ In Hill units, with $\epsilon\equiv r_{\rm H}/a$, expanding the companion's pote
 \begin{equation}
 U_1=\tfrac12\left(5\xi^3-3\xi\rho^2\right)
 \end{equation}
-is the octupole; the centrifugal and quadrupole terms are exact at this order once $\epsilon$ is defined through $M_1+M_2$. Write the lobe volume as $V=r_{\rm H}^3(V_{\rm H}+\epsilon V_1+\ldots)$.
+is the octupole; the centrifugal and quadrupole terms are exact at this order once $\epsilon$ is defined through $M_1+M_2$. Write the lobe volume, in units of $r_{\rm H}^3$, as $V/r_{\rm H}^3=V_{\rm H}+\epsilon V_1+\cdots$, with the same dimensionless $V_{\rm H}$ as above.
 
 At $O(\epsilon)$ two effects enter. The critical value shifts by $\epsilon U_1(L_1)=\epsilon$, and the surface is displaced by $\epsilon(U_1-1)/|\nabla U_0|$. Because $U_1$ is odd in $\xi$ while the unperturbed lobe and $|\nabla U_0|$ are even, $\oint U_1\,\dd A/|\nabla U_0|=0$ and only the level shift survives: $V_1=\dd V/\dd c$ at $c=9/2$, the derivative of the enclosed volume with respect to the level. On the critical surface the cubic $3/\rho+A\rho^2=c$ gives $\partial\rho/\partial c=\rho^2/[9(\rho-1)]$, whence
 \begin{equation}
@@ -200,27 +221,46 @@ with $\rho(\hat{\bm n})$ from equation~(\ref{eq:hillsurf}); the $1/(1-\rho)$ sin
 a_1=\frac{3^{-1/3}V_1}{3V_{\rm H}}=-0.264\,750\,47.
 \end{equation}
 
-The next term is not $O(\epsilon^2)$. At $L_2$ ($\xi=-1$) the octupole {\em lowers} the saddle value by $\epsilon$ while the lobe level {\em rises} by $\epsilon$, so the perturbed surface no longer passes through $L_2$: the unperturbed cone there becomes a smooth cap. With the Hessian of $U_0$ at $L_2$ equal to $\operatorname{diag}(9,-3,-4)$, the local region is $9s_\xi^2-3s_\eta^2-4s_\zeta^2\ge4\epsilon$ in place of the cone $\ge0$, i.e., a hyperboloid of two sheets replacing its asymptotic cone. Linear theory over-removes volume within a distance $\sim\sqrt\epsilon$ of $L_2$; the finite part of the difference,
+The next term is not $O(\epsilon^2)$. At $L_2$ ($\xi=-1$) the octupole {\em lowers} the saddle value by $\epsilon$ while the lobe level {\em rises} by $\epsilon$, so the perturbed surface no longer passes through $L_2$: the unperturbed cone there becomes a smooth cap. With the Hessian of $U_0$ at $L_2$ equal to $\operatorname{diag}(9,-3,-4)$, the local region is $9s_\xi^2-3s_\eta^2-4s_\zeta^2\ge4\epsilon$ in place of the cone $\ge0$, i.e., a hyperboloid of two sheets replacing its asymptotic cone. Linear theory over-removes volume within a distance $\sim\sqrt\epsilon$ of $L_2$. We define $\Delta V>0$ as the volume restored to the lobe when the linearised surface is replaced by the hyperboloid; Appendix~\ref{app:a32} evaluates
 \begin{equation}
-\Delta V=\frac{\pi}{3\sqrt3}\int_0^\infty\!\left[\sqrt{w^2+4\epsilon}-w-\frac{2\epsilon}{w}\right]w\,\dd w=\frac{8\pi}{9\sqrt3}\,\epsilon^{3/2},
+\Delta V=\frac{\pi}{3\sqrt3}\int_0^\infty\!\left[w+\frac{2\epsilon}{w}-\sqrt{w^2+4\epsilon}\right]w\,\dd w=\frac{8\pi}{9\sqrt3}\,\epsilon^{3/2},
+\label{eq:dV32}
 \end{equation}
-gives
+and
 \begin{equation}
 a_{3/2}=\frac{3^{-1/2}}{3V_{\rm H}}\cdot\frac{8\pi}{9\sqrt3}=\frac{8\pi}{81V_{\rm H}}=0.205\,681\,47.
 \end{equation}
-At $L_1$ the surface continues to pass through the (displaced) saddle and no such term arises. The same analysis gives the potential difference between the outer and inner Lagrange points of a low-mass secondary, $\Phi_{L_2}-\Phi_{L_1}=\tfrac23\,GM_1/a$ to leading order in $M_1/M_2$ (numerically $0.6667\,GM_1/a$ at $M_2/M_1=10^4$). Altogether,
+The integrand is the (positive) difference between the linearised and actual transverse radii; the two subtracted pieces are the unperturbed cone, already counted in $V_{\rm H}$, and the $O(\epsilon)$ displacement, already counted in $V_1$. At $L_1$ the level set passes through a nondegenerate saddle for every $\epsilon$, so the local geometry varies smoothly with $\epsilon$ and no half-integer term arises. The same analysis gives the potential difference between the outer and inner Lagrange points of a low-mass secondary, $\Phi_{L_2}-\Phi_{L_1}=\tfrac23\,GM_1/a$ to leading order in $M_1/M_2$ (numerically $0.6667\,GM_1/a$ at $M_2/M_1=10^4$). The expansion is then
 \begin{equation}
 \frac{\RL}{a}=C\,t\left[1+a_1t+a_{3/2}t^{3/2}+a_2t^2+a_{5/2}t^{5/2}+O(t^3)\right],
 \label{eq:hillexp}
 \end{equation}
-with $a_2\simeq-0.346$ and $a_{5/2}\simeq0.385$ from fits with the first two coefficients fixed.
+The coefficient $a_2$ is also exact. Carrying the expansion to $U=U_0+\epsilon U_1+\epsilon^2U_2$ with the hexadecapole $U_2=\rho^4P_4(n_\xi)$ and critical level $\tfrac92+\epsilon+\tfrac12\epsilon^2$, and writing $V/r_{\rm H}^3=V_{\rm H}+V_1\epsilon+V_{3/2}\epsilon^{3/2}+V_2\epsilon^2+\ldots$,
+\begin{equation}
+a_2=3^{-2/3}\left[\frac{V_2}{3V_{\rm H}}-\frac{V_1^2}{9V_{\rm H}^2}\right],\qquad V_2=V_2^{(U_2)}+V_2^{\rm red}.
+\label{eq:a2}
+\end{equation}
+The hexadecapole enters at first order through a convergent integral over the exact surface,
+\begin{equation}
+V_2^{(U_2)}=\frac19\oint\frac{\big(\rho^4P_4(n_\xi)-1\big)\rho^4}{1-\rho}\,\dd\Omega=-1.356\,240\,342.
+\end{equation}
+The octupole enters at second order. Along a ray, with $B=P_3(n_\xi)$, $U_0'=9(\rho_0-1)/\rho_0^2$ and $U_0''=6/\rho_0^3+2A$ evaluated on the critical surface, the second-order displacement is $\rho_1=(1-B\rho_0^3)/U_0'$, $\rho_2=-[\tfrac12U_0''\rho_1^2+3B\rho_0^2\rho_1+\tfrac12]/U_0'$, and
+\begin{equation}
+V_2^{\rm red}=\operatorname{FP}\oint\big(\rho_0^2\rho_2+\rho_0\rho_1^2\big)\,\dd\Omega=-1.260\,674\,456,
+\label{eq:V2red}
+\end{equation}
+where FP denotes the Hadamard finite part with respect to the ray angle $\vartheta$ about the $L_2$ direction, at which the integrand behaves as $\vartheta^{-3}$. That this finite part is the complete $O(\epsilon^2)$ term follows from solving the $L_2$ cap in the same ray coordinates (Appendix~\ref{app:a32}): every correction to the quadratic cap at relative order $\sqrt\epsilon$ is odd in the axial coordinate and hence analytic in $\epsilon$, so the cap contributes no additional constant and no logarithm; the coefficient of $\vartheta^{-1}$ in the azimuthally integrated integrand, which would produce an $\epsilon^2\ln\epsilon$ term, is $-4\times10^{-12}$. We verified the prescription on the pure level shift $U_0\ge\tfrac92+\Delta$, whose $\Delta^2$ coefficient it reproduces to eight digits against the exact volume function of the Hill potential. Altogether
+\begin{equation}
+a_2=-0.348\,081\,95,
+\end{equation}
+independent of the matching radius to $10^{-9}$ and confirmed by the reduced model in extended precision ($V_2^{\rm red}=-1.2606\pm0.0003$). With $a_1$, $a_{3/2}$ and $a_2$ fixed, the reference solution over $10^{-9}\le\qE\le10^{-4}$ leaves a remainder fitted by $\{t^{5/2},t^3,t^{7/2}\}$ to $4\times10^{-7}$, with $a_{5/2}\simeq0.417$.
 
-Two tests were made. In the reduced model $U_0+\epsilon U_1$, $[V-V_{\rm H}-\epsilon V_1]/\epsilon^{3/2}$ evaluates to $1.5146$, $1.5757$, $1.6000$, $1.6083$ at $\epsilon=10^{-2},10^{-3},10^{-4},10^{-5}$, converging on $8\pi/(9\sqrt3)=1.6123$ with the $\sqrt\epsilon$ drift expected from the next term. In the full Roche problem (Figure~\ref{fig:asym}b), 19 reference values over $10^{-9}\le\qE\le10^{-4}$ fitted with integer powers only give residuals of $2\%$ of the signal and a spurious $a_1=-0.254$; a free fit including $t^{3/2}$ and $t^{5/2}$ returns $a_1=-0.2647$ and $a_{3/2}=0.202$; and with both analytic coefficients fixed the remainder $\{t^2,t^{5/2},t^3\}$ fits to $6\times10^{-6}$.
+Two tests of $a_{3/2}$ were made. In the reduced model $U_0+\epsilon U_1$, $[V-V_{\rm H}-\epsilon V_1]/\epsilon^{3/2}$ evaluates to $1.5146$, $1.5757$, $1.6000$, $1.6083$ at $\epsilon=10^{-2},10^{-3},10^{-4},10^{-5}$, converging on $8\pi/(9\sqrt3)=1.6123$ with the $\sqrt\epsilon$ drift expected from the next term. In the full Roche problem (Figure~\ref{fig:asym}b), 19 reference values over $10^{-9}\le\qE\le10^{-4}$ fitted with integer powers only give residuals of $2\%$ of the signal and a spurious $a_1=-0.254$; a free fit including $t^{3/2}$ and $t^{5/2}$ returns $a_1=-0.2647$ and $a_{3/2}=0.202$.
 
 \begin{figure*}
 \centering
 \includegraphics[width=\textwidth]{fig_asymptotics.pdf}
-\caption{Asymptotic structure of the reference solution. (a) Dominant-star limit: $(R_0-\RL/a)\qE^{2/3}$ against $\ln\qE$ is linear with the exact slope $K$ of equation~(\ref{eq:logexp}) and a fitted intercept; the dashed curve adds the two fitted $O(\qE^{-1/3})$ terms. The Eggleton formula has a logarithm of the same form with a $28\%$ smaller slope and an incorrect intercept. (b) Hill limit: $[\RL/(Cat)-1]/t$ against $t=\qE^{1/3}$ approaches the analytic $a_1$ with the $\sqrt t$ dependence produced by the $L_2$ cap; the solid curve adds the two fitted higher-order terms of equation~(\ref{eq:hillexp}).}
+\caption{Asymptotic structure of the reference solution. (a) Dominant-star limit: $(R_0-\RL/a)\qE^{2/3}$ against $\ln\qE$ is linear with the exact slope $K$ and intercept $c_2$ of equation~(\ref{eq:logexp}); the dashed curve adds the two fitted $O(\qE^{-1/3})$ terms. The Eggleton formula has a logarithm of the same form with slope $0.454$ rather than $K=0.627$. Inset: the local slope versus $1/\ln\qE$ approaches $K$ (horizontal line) and not $0.454$. (b) Hill limit: $[\RL/(Cat)-1]/t$ against $t=\qE^{1/3}$ approaches the analytic $a_1$ with the $\sqrt t$ dependence produced by the $L_2$ cap; the solid curve adds the exact $a_2$ and the fitted $a_{5/2}$ of equation~(\ref{eq:hillexp}).}
 \label{fig:asym}
 \end{figure*}
 
@@ -234,25 +274,9 @@ For each direction $(\theta,\varphi)$ the lobe radius is the first root of $\zet
 
 \subsection{Accuracy}
 
-Table~\ref{tab:converge} gives the convergence ladder. Between $n=200$ and $n=400$ the volume-equivalent radius changes by at most $5\times10^{-15}$, and the direct volume agrees with the value recovered from equation~(\ref{eq:vz}), an entirely different functional of the same surface, to $\le10^{-14}$ at every mass ratio tested. The reference table (Table~\ref{tab:ref}) was computed with $n=300$ and is accurate to better than $10^{-13}$ in $\RL/a$, i.e., 13 significant figures over the full range. The two exact limits, equations~(\ref{eq:R0}) and (\ref{eq:C}), and the exact log coefficient of Section~\ref{sec:asym_log} provide checks that are independent of the code.
+Table~\ref{tab:converge} in Appendix~\ref{app:tables} gives the convergence ladder. Between $n=200$ and $n=400$ the volume-equivalent radius changes by at most $5\times10^{-15}$, and the direct volume agrees with the value recovered from equation~(\ref{eq:vz}), an entirely different functional of the same surface, to $\le10^{-14}$ at every mass ratio tested. The reference table (Table~\ref{tab:ref}) was computed with $n=300$. The absolute error in $\RL/a$ is smaller than $10^{-13}$ at every mass ratio in Table~\ref{tab:converge}, which is 13 significant figures near $\qE\sim1$ and at least 10 significant figures at $\qE=10^{-6}$, where $\RL/a\sim5\times10^{-3}$. The bound is the larger of the $n=200\to400$ change and the von~Zeipel residual at $n=400$. The two exact limits, equations~(\ref{eq:R0}) and (\ref{eq:C}), and the exact log coefficient of Section~\ref{sec:asym_log} provide checks that are independent of the code.
 
-\begin{deluxetable}{lccc}
-\tablecaption{Convergence of the reference solution. Columns: change in $\RL/a$ between successive quadrature orders, and the difference between the direct volume and the volume recovered from the surface integral, equation~(\ref{eq:vz}), at $n=400$.\label{tab:converge}}
-\tablehead{\colhead{$\qE$} & \colhead{$|\Delta R|_{100\to200}$} & \colhead{$|\Delta R|_{200\to400}$} & \colhead{$|R-R_{\rm vZ}|_{400}$}}
-\startdata
-$10^{-6}$ & $4\times10^{-15}$ & $7\times10^{-17}$ & $2\times10^{-16}$ \\
-$10^{-4}$ & $2\times10^{-14}$ & $3\times10^{-16}$ & $7\times10^{-16}$ \\
-$10^{-2}$ & $9\times10^{-14}$ & $1\times10^{-15}$ & $3\times10^{-15}$ \\
-$10^{-1}$ & $2\times10^{-13}$ & $3\times10^{-15}$ & $7\times10^{-15}$ \\
-$1$       & $3\times10^{-13}$ & $5\times10^{-15}$ & $1\times10^{-14}$ \\
-$10$      & $3\times10^{-13}$ & $4\times10^{-15}$ & $7\times10^{-15}$ \\
-$10^{2}$  & $3\times10^{-14}$ & $5\times10^{-16}$ & $2\times10^{-15}$ \\
-$10^{4}$  & $5\times10^{-16}$ & $1\times10^{-15}$ & $7\times10^{-15}$ \\
-$10^{6}$  & $4\times10^{-16}$ & $2\times10^{-15}$ & $9\times10^{-15}$ \\
-\enddata
-\end{deluxetable}
-
-Comparison with published values: at $\qE=1$ our $\RL/a=0.379\,863\,240\,928$ agrees with the $0.379\,863$ of \citet{Mochnacki1984} to all six of his digits; the ten equatorial radii $R(90^\circ,\varphi)$ tabulated by \citet{LeahyLeahy2015} for $\qE=1$ are reproduced to $\le5\times10^{-8}$, their stated root tolerance; and all eight finite entries of Table~1 of \citet{Eggleton1983}, including $r_L(\infty)=0.8149$, agree with our values to his four printed digits. Mochnacki's $x_{L_1}=0.71751$ at $q=0.10$ satisfies equation~(\ref{eq:seidov}) to $1$ part in $10^5$.
+Comparison with published values: at $\qE=1$ our $\RL/a=0.379\,863\,240\,9274$ agrees with the $0.379\,863$ of \citet{Mochnacki1984} to all six of his digits; the ten equatorial radii $R(90^\circ,\varphi)$ tabulated by \citet{LeahyLeahy2015} for $\qE=1$ are reproduced to $\le5\times10^{-8}$, their stated root tolerance; and all eight finite entries of Table~1 of \citet{Eggleton1983}, including $r_L(\infty)=0.8149$, agree with our values to his four printed digits. Mochnacki's $x_{L_1}=0.71751$ at $M_2/M_1=0.10$ satisfies equation~(\ref{eq:seidov}) to $1$ part in $10^5$.
 
 \subsection{Reference table and lobe geometry}\label{sec:table}
 
@@ -269,7 +293,7 @@ Table~\ref{tab:ref} lists $\RL/a$ and $x_{L_1}/a$ at half-decade intervals; the 
 
 \subsection{Existing formulae over twelve decades}
 
-Table~\ref{tab:fits} and Figure~\ref{fig:fits} compare four published formulae with the reference solution over $10^{-6}\le\qE\le10^6$. The Eggleton formula has a maximum error of $0.83\%$ and an rms error of $0.42\%$, consistent with his claim of better than $1\%$, and it retains this accuracy without limit at both ends because its exponents are the correct $2/3$ and $1/3$.
+Table~\ref{tab:fits} and Figure~\ref{fig:fits} compare three published formulae with the reference solution over $10^{-6}\le\qE\le10^6$. The Eggleton formula has a maximum error of $0.83\%$ and an rms error of $0.42\%$, consistent with his claim of better than $1\%$, and it retains this accuracy without limit at both ends because its exponents are the correct $2/3$ and $1/3$.
 
 \begin{figure*}
 \centering
@@ -278,9 +302,9 @@ Table~\ref{tab:fits} and Figure~\ref{fig:fits} compare four published formulae w
 \label{fig:fits}
 \end{figure*}
 
-\citet{LeahyLeahy2015} generalized equation~(\ref{eq:eggleton}) to $a_1q^{a_4}/[a_2q^{a_5}+\ln(1+a_3q^{a_4+1/3})]$ with $q=M_2/M_1$ and fitted it over $0.01\le q\le100$. We note that with the coefficients as published ($a_5=+0.73103$) the formula is wrong by orders of magnitude, and that the stated large-$q$ limit is recovered only if $a_5<0$; with $a_5=-0.73103$ it reproduces our reference values to $0.038\%$ over the calibrated range, so the published sign is evidently a typographical error. Outside that range, however, the free exponents $a_4=-0.743$ and $a_5=-0.731$ imply $\RL\propto\qE^{+0.012}$ as $\qE\to\infty$, so the formula diverges instead of approaching $R_0$; the error is $2.2\%$ at $\qE=10^4$ and $7.3\%$ at $10^6$, and $1.5\%$ at $\qE=10^{-6}$.
+\citet{LeahyLeahy2015} generalized equation~(\ref{eq:eggleton}) to $a_1q^{a_4}/[a_2q^{a_5}+\ln(1+a_3q^{a_4+1/3})]$ with their $q=M_2/M_1=1/\qE$ and fitted it over $0.01\le q\le100$ ($10^{-2}\le\qE\le10^{2}$). The published coefficients are $a_1=0.64334$, $a_2=0.86907$, $a_3=1.2809$, $a_4=-0.74303$ and $a_5=+0.73103$. With that $a_5$ the formula is wrong by orders of magnitude, and the stated large-$q$ limit is recovered only if $a_5<0$; with $a_5=-0.73103$ it reproduces our reference values to $0.038\%$ over the calibrated range, so the published sign is a typographical error. We find no published erratum. Outside that range, however, the free exponents $a_4=-0.743$ and $a_5=-0.731$ imply $\RL\propto\qE^{+0.012}$ as $\qE\to\infty$, so the formula diverges instead of approaching $R_0$; the error is $2.2\%$ at $\qE=10^4$ and $7.3\%$ at $10^6$, and $1.5\%$ at $\qE=10^{-6}$. The $+22\%$ derivative error at $\qE=10^3$ in Table~\ref{tab:deriv} lies outside their calibration and is a consequence of that divergence, not of the mid-range fit.
 
-\citet{Qi2026} refitted equation~(\ref{eq:eggleton}) with exponents $0.665$ and $0.329$ in place of $2/3$ and $1/3$. Over $0.01\le\qE\le100$ this gives a maximum error of $0.65\%$, but at small $\qE$ the formula scales as $\qE^{0.336}$ rather than $\qE^{1/3}$ and the error grows without bound: $1.3\%$ at $\qE=10^{-3}$, $2.4\%$ at $10^{-4}$ and $4.1\%$ at $10^{-6}$. These are the mass ratios of a Jupiter-, Neptune- and sub-Earth-mass planet around a solar-mass star, a regime in which the Roche-lobe radius is used routinely (planetary tidal disruption and mass loss, and extreme-mass-ratio compact binaries), and one in which the original Eggleton formula is more accurate than either refit.
+\citet{Qi2026} refitted equation~(\ref{eq:eggleton}) with exponents $0.665$ and $0.329$ in place of $2/3$ and $1/3$. Over $0.01\le\qE\le100$ this gives a maximum error of $0.65\%$. At small $\qE$ the formula scales as $\qE^{0.336}$ rather than $\qE^{1/3}$, so $\RL/(a\qE^{1/3})\propto\qE^{0.002667}\to0$, not to infinity. With the signed relative-error convention $\RL^{\rm fit}/\RL^{\rm ref}-1$ used throughout, the error tends to $-1$ and is therefore bounded; the inverse ratio $\RL^{\rm ref}/\RL^{\rm fit}$ diverges. Over the sampled interval the signed error is $1.3\%$ at $\qE=10^{-3}$, $2.4\%$ at $10^{-4}$ and $4.1\%$ at $10^{-6}$. These are the mass ratios of a Jupiter-, Neptune- and sub-Earth-mass planet around a solar-mass star, a regime in which the Roche-lobe radius is used routinely (planetary tidal disruption and mass loss, and extreme-mass-ratio compact binaries), and one in which the original Eggleton formula is more accurate than either refit.
 
 \subsection{Formulae with exact asymptotics}
 
@@ -310,7 +334,11 @@ H_2&=-0.130\,971, & J_2&=0.707\,426,\\
 H_3&=\phantom{-}0.134\,476, & J_3&=1.114\,754,
 \end{aligned}
 \end{equation}
-with maximum error $0.018\%$ and rms error $0.011\%$ over $10^{-6}\le\qE\le10^6$ (Figure~\ref{fig:fits}). Rounding the coefficients to four significant figures does not change these numbers. Beyond the fitted range the six-coefficient formula follows the asymptotic series of equations~(\ref{eq:logexp}) and (\ref{eq:hillexp}) to five or six digits at $\qE=10^{\pm9}$, where the Eggleton formula is off by $0.2\%$ and $0.7\%$ and the two refits by much more. Equation~(\ref{eq:fit}) with (\ref{eq:h6}) is therefore more accurate than any published formula both inside and outside the classical range, and is the only one with correct limiting behavior; the two-coefficient version offers Eggleton-level simplicity with exact limits and $2.4$ times smaller error.
+with maximum error $0.018\%$ and rms error $0.011\%$ over $10^{-6}\le\qE\le10^6$ (Figure~\ref{fig:fits}). The coefficients are a minimax fit: a least-squares start followed by Nelder--Mead iteration on the maximum relative error over the 73 reference values, not a Remez exchange. Rounding the coefficients to four significant figures does not change these numbers.
+
+The form does not enforce the sub-leading coefficients we derived. Expanding equation~(\ref{eq:fit}) at small $t$ gives $a_1^{\rm fit}=E/2-(A+H)/(R_0 E)$, which with the six-coefficient $H$ is $-0.235$ rather than the exact $-0.2648$; the omitted $t^{3/2}$ term is absorbed inside the calibrated range. At large $t$ the intercept is set by $h(\infty)$: $c_2=3K[\ln E+h(\infty)/R_0]=-1.16$, consistent with the exact $-0.983$. One could fix $H$ so that $a_1$ is exact and add a term $\propto t^{7/2}/(1+Jt^2)^{7/4}$ that reproduces $a_{3/2}$, making $h(t)$ exact through second order at both ends. We do not: those constraints spend the remaining freedom on the extreme ends, already correct to leading order, at the expense of $10^{-4}\lesssim\qE\lesssim10^4$, where the formula is used. The practical gain at the $10^{-4}$ level is negligible. We regard the present minimax, exact at leading order at both ends and accurate to $0.018\%$ where binaries live, as the more useful end point.
+
+Beyond the fitted range the six-coefficient formula follows the asymptotic series of equations~(\ref{eq:logexp}) and (\ref{eq:hillexp}) to five or six digits at $\qE=10^{\pm9}$, where the Eggleton formula is off by $0.2\%$ and $0.7\%$ and the two refits by much more. Equation~(\ref{eq:fit}) with (\ref{eq:h6}) is therefore the most accurate globally valid closed-form formula among those compared here, both inside and outside the classical range, and is the only one with correct limiting behavior. \citet{LeahyLeahy2015} also published a cubic spline in $\log q$ on 28 nodes over $0.01\le q\le100$, with rms $1.4\times10^{-7}$ in $R_{\rm eq}$; that interpolation is substantially more accurate within its calibrated interval, but it is neither global nor asymptotically constrained. The two-coefficient version offers Eggleton-level simplicity with exact limits and $2.4$ times smaller error.
 
 \begin{figure*}
 \centering
@@ -328,7 +356,7 @@ For conservative transfer with donor $M_1$ (so $\qE=M_{\rm d}/M_{\rm a}$), $a\pr
 \zeta_L=(1+\qE)\,D+2(\qE-1),\qquad D\equiv\frac{\partial\ln(\RL/a)}{\partial\ln\qE}.
 \label{eq:zetaL}
 \end{equation}
-We compute $D$ from the reference solution by central differences with $\delta=5\times10^{-3}$; repeating at $\delta/2$ for $\qE=0.1$, $1$ and $10$ changes $D$ by at most $3\times10^{-8}$. Eggleton's error in $D$ reaches $7.4\%$ over $10^{-4}\le\qE\le10^4$ and $3.7\%$ over $0.01\le\qE\le100$, several times his error in the value, and it oscillates in sign (Figure~\ref{fig:fits}, Table~\ref{tab:deriv}). The six-parameter formula holds the derivative error to $0.20\%$ or smaller.
+We compute $D$ from the reference solution by central differences in $\ln\qE$ with step $\delta=5\times10^{-3}$; repeating at $\delta/2$ for $\qE=0.1$, $1$ and $10$ changes $D$ by at most $3\times10^{-8}$. Eggleton's error in $D$ reaches $7.4\%$ over $10^{-4}\le\qE\le10^4$ and $3.7\%$ over $0.01\le\qE\le100$, several times his error in the value, and it oscillates in sign (Figure~\ref{fig:fits}, Table~\ref{tab:deriv}). The six-parameter formula holds the derivative error to $0.20\%$ or smaller.
 
 The critical mass ratio $\qE^{\rm crit}$ at which $\zeta_L=\zeta_{\rm ad}$ shifts by at most $0.52\%$ if Eggleton's formula is used, at the fully convective value $\zeta_{\rm ad}=-1/3$; at the radiative-envelope value $\zeta_{\rm ad}=6.85$ of \citet{HjellmingWebbink1987} the shift is $0.01\%$ (Table~\ref{tab:qcrit}). Equation~(\ref{eq:fit}) with (\ref{eq:h6}) moves $\qE^{\rm crit}$ by less than $0.03\%$ for every $\zeta_{\rm ad}$ we compute. Once $\qE\gtrsim1$ the orbital term $2(\qE-1)$ dominates $\zeta_L$, so a few-percent error in $D$ does not move the radiative stability boundary by a comparable fraction.
 
@@ -340,15 +368,13 @@ The critical mass ratio $\qE^{\rm crit}$ at which $\zeta_L=\zeta_{\rm ad}$ shift
 \startdata
 \citet{Eggleton1983}      & 3 & $0.83\%$  & $0.83\%$ & $0.42\%$  & $0.8167$ & $0.490$ \\
 \citet{LeahyLeahy2015}\tablenotemark{a} & 5 & $0.038\%$ & $7.3\%$  & $2.2\%$   & diverges & $0.502$ \\
-\citet{Qi2026}            & 5 & $0.65\%$  & $4.1\%$  & $1.5\%$   & $0.8140$ & diverges \\
+\citet{Qi2026}            & 5 & $0.65\%$  & $4.1\%$  & $1.5\%$   & $0.8140$ & $0$ \\
 This work, eq.~(\ref{eq:fit}) with (\ref{eq:h2}) & 2 & $0.34\%$  & $0.34\%$ & $0.20\%$  & $R_0$ (exact) & $C$ (exact) \\
 This work, eq.~(\ref{eq:fit}) with (\ref{eq:h6}) & 6 & $0.018\%$ & $0.018\%$ & $0.011\%$ & $R_0$ (exact) & $C$ (exact) \\
 \hline
 Exact                     &   &           &          &           & $0.81489$ & $0.49331$ \\
 \enddata
-\tablenotetext{a}{With $a_5=-0.73103$; see text.}
-\tablenotetext{b}{Over $0.01\le\qE\le100$.}
-\tablenotetext{c}{Over $10^{-6}\le\qE\le10^{6}$.}
+\tablecomments{$^{a}$With $a_5=-0.73103$; see text.\hfill $^{b}$Over $0.01\le\qE\le100$.\hfill $^{c}$Over $10^{-6}\le\qE\le10^{6}$.}
 \end{deluxetable*}
 
 \section{Discussion}\label{sec:disc}
@@ -357,23 +383,21 @@ The expansion of $\RL(\qE)$ is not a power series in $\qE^{1/3}$ at either end: 
 
 Formulae accurate to $0.3\%$ in $\RL/a$ are accurate to only a few percent in $D=\partial\ln(\RL/a)/\partial\ln\qE$, and it is $D$ that sets mass-transfer stability. Eggleton's $D$ has a maximum error of $3.7\%$ over $0.01\le\qE\le100$ ($7.4\%$ over eight decades), changes sign across the classical range, and is several times his error in the value ($-1.60\%$ versus $-0.25\%$ at $\qE=1$). For conservative transfer $\zeta_L=(1+\qE)D+2(\qE-1)$, and once $\qE\gtrsim1$ the orbital term dominates, so the radiative-donor boundary ($\zeta_{\rm ad}=6.85$) moves by only $0.01\%$ while the fully convective boundary ($\zeta_{\rm ad}=-1/3$, $\qE^{\rm crit}=0.63$) moves by $0.5\%$. The derivative error therefore matters most where the lobe term dominates: low-mass, convective donors (CVs, LMXBs, and planet or brown-dwarf donors). The six-coefficient formula reduces the derivative error to $0.2\%$ and the $\qE^{\rm crit}$ shifts to $\le0.02\%$.
 
-The planetary and extreme-mass-ratio regime has been served by the wrong numbers. The Paczy\'nski coefficient $0.462\,24$, still widely used for planets, is exactly $\tfrac23 r_{\rm H}$ (a Hill-sphere proxy) and is $6.3\%$ below the exact asymptote $C=0.493\,31$; a planet of Jupiter's mean density fills its lobe at $P=8.27$~h, not $9.12$~h, and the critical density for tidal disruption at fixed separation shifts by $20\%$. Both modern refits are {\em worse} than Eggleton for $\qE\lesssim10^{-3}$: \citet{Qi2026} err by $1.3\%$ for a Jupiter and $2.7\%$ for a Neptune around a Sun, and by $3.1\%$ for a $0.2\,M_\odot$ white dwarf around a $10^4\,M_\odot$ intermediate-mass black hole, a $4.7\%$ error in the gravitational-wave frequency at overflow onset. The exact Hill-lobe surface gives the lobe extent in every direction: for WASP-12b the planet fills $81\%$ of the volume-equivalent radius but $88\%$ of the polar extent, the direction relevant to atmospheric overflow. This is the regime in which Roche-lobe formulae are now used most and tested least: planet engulfment, evaporating hot Jupiters, and white-dwarf companions to intermediate-mass black holes in the {\em LISA} band.
+The planetary and extreme-mass-ratio regime has been served by the wrong numbers. The Paczy\'nski coefficient $0.462\,24$, still widely used for planets, is exactly $\tfrac23 r_{\rm H}$ (a Hill-sphere proxy) and is $6.3\%$ below the exact asymptote $C=0.493\,31$; a planet of Jupiter's mean density fills its lobe at $P=8.27$~h, not $9.12$~h, and the critical density for tidal disruption at fixed separation shifts by $22\%$ ($(C/0.46224)^3=1.215$). Both modern refits are {\em worse} than Eggleton for $\qE\lesssim10^{-3}$: \citet{Qi2026} err by $1.3\%$ for a Jupiter and $2.7\%$ for a Neptune around a Sun, and by $3.1\%$ for a $0.2\,M_\odot$ white dwarf around a $10^4\,M_\odot$ intermediate-mass black hole, a $4.7\%$ error in the gravitational-wave frequency at overflow onset. That $4.7\%$ is a comparison between Newtonian Roche-lobe prescriptions. At overflow the Newtonian separation is tens of gravitational radii for these masses, so relativistic corrections to the lobe may be comparable to the difference between the fitting formulae. The exact Hill-lobe surface gives the lobe extent in every direction, with a caveat at planetary mass ratios: at $\qE\sim10^{-3}$ the $O(t)$ correction to $\RL/a$ is $2.6\%$, so directional radii taken from the $\epsilon=0$ surface are uncertain at the percent level. For WASP-12b we therefore use the full Roche solution at the observed mass ratio. Adopting $M_p=1.47\,M_{\rm J}$, $M_\ast=1.434\,M_\odot$, $a=0.02340$~AU and $R_p=1.90\,R_{\rm J}$ \citep{Collins2017}, one has $\qE=9.79\times10^{-4}$ and $\RL=2.35\,R_{\rm J}$; the planet fills $81\%$ of the volume-equivalent radius and $90\%$ of the polar extent ($2.12\,R_{\rm J}$), the direction relevant to atmospheric overflow. Those fill factors compare a measured transit radius with the Roche geometry. Roche-lobe contact in the binary-star sense is $\RL$ reaching the stellar radius; a fluid body can shed mass through $L_1$ from a smaller volume fill factor if it is distorted, or remain bound at a larger fill factor if it is centrally condensed. The $81\%$ and $90\%$ figures are not a fluid disruption criterion. This is the regime in which Roche-lobe formulae are now used most and tested least: planet engulfment, evaporating hot Jupiters, and white-dwarf companions to intermediate-mass black holes in the {\em LISA} band.
 
 \section{Summary}\label{sec:summary}
 
 \begin{enumerate}
 \item The $L_1$ quintic has Galois group $S_5$ for generic rational mass ratio; $x_{L_1}$ has no expression in radicals, although infinitely many rational mass ratios, given by Seidov's inversion, have rational $L_1$.
 \item In the dominant-star limit the lobe is the critical rotating-star surface $r=2a/(1+2\cos\tfrac{2\theta}{3})$, and its volume-equivalent radius is $R_0=[3\sqrt3-4+3\ln(6-3\sqrt3)]^{1/3}a=0.814\,885\,68\,a$ in closed form.
-\item The leading correction to $R_0$ is $-K\qE^{-2/3}\ln\qE$ with $K=3^{-1/6}/(2R_0^2)$ exactly; the logarithm arises because the equator of the limiting surface is a ring of critical points. The Eggleton formula has this structure with a $28\%$ smaller coefficient, which explains its robustness.
-\item In the Hill limit the lobe surface is $\rho=(2/m)\sin(\tfrac13\arcsin m)$ exactly, $\RL\to0.711\,470\,70\,r_{\rm H}=0.493\,306\,23\,a\,\qE^{1/3}$, and the expansion contains a $t^{3/2}$ term with the closed-form coefficient $8\pi/(81V_{\rm H})$, produced by the lifting of the surface off the $L_2$ saddle.
+\item The leading correction to $R_0$ is $-K\qE^{-2/3}\ln\qE$ with $K=3^{-1/6}/(2R_0^2)$ exactly, and the next coefficient $c_2=-0.98319$ is given in closed form by equation~(\ref{eq:c2}); the logarithm arises because the equator of the limiting surface is a ring of critical points. The Eggleton formula has this structure with a $28\%$ smaller coefficient, which explains its robustness.
+\item In the Hill limit the lobe surface is $\rho=(2/m)\sin(\tfrac13\arcsin m)$ exactly, $\RL\to0.711\,470\,70\,r_{\rm H}=0.493\,306\,23\,a\,\qE^{1/3}$, and the expansion contains a $t^{3/2}$ term with coefficient $8\pi/(81V_{\rm H})$, an exact expression in the dimensionless Hill-volume constant, produced by the lifting of the surface off the $L_2$ saddle. The coefficients $a_1$, $a_{3/2}$ and $a_2$ are exact.
 \item The lobe volume, area and mean effective gravity satisfy $\oint|\geff|\dd A=4\pi GM_1-2\omega^2V$.
-\item A reference solution accurate to 13 significant figures over twelve decades of mass ratio shows that the refits of \citet{LeahyLeahy2015} and \citet{Qi2026}, while more accurate than Eggleton's formula in their calibration range, break the exact $\qE^{1/3}$ scaling and err by $4$--$7\%$ at extreme mass ratios, including planetary ones. A six-coefficient formula constrained by the exact asymptotics is accurate to $0.018\%$ everywhere.
+\item A reference solution with absolute error smaller than $10^{-13}$ in $\RL/a$ over twelve decades of mass ratio shows that the refits of \citet{LeahyLeahy2015} and \citet{Qi2026}, while more accurate than Eggleton's formula in their calibration range, break the exact $\qE^{1/3}$ scaling and err by $4$--$7\%$ at extreme mass ratios, including planetary ones. A six-coefficient formula constrained by the exact asymptotics is accurate to $0.018\%$ everywhere.
 \item The logarithmic derivative $D=\partial\ln(\RL/a)/\partial\ln\qE$ of the Eggleton formula errs by up to $7.4\%$ over $10^{-4}\le\qE\le10^4$, several times its error in $\RL/a$; the six-parameter formula holds $D$ to $0.20\%$. The largest shift in the conservative critical mass ratio is $0.52\%$ (Eggleton, $\zeta_{\rm ad}=-1/3$); at the radiative-envelope value $\zeta_{\rm ad}=6.85$ it is $0.01\%$.
 \end{enumerate}
-Two coefficients remain analytically open: $c_2$ in equation~(\ref{eq:logexp}), which requires the nonlinear inner solution near the critical ring, and $a_2$ in equation~(\ref{eq:hillexp}). Neither affects the results above.
-
 \begin{acknowledgments}
-This paper was primarily authored by AI using Claude Fable 5.1 and Grok 4.6, with only light editing by the authors.\footnote{The \LaTeX\ source, figure scripts, and reference table are at \url{https://github.com/guillochon/roche-lobe}.}
+The authors take full responsibility for the contents of this paper. Large language models (Claude Fable 5.1 and Grok 4.6) were used in drafting the text and in deriving and checking the analytic results; every displayed equation has been re-derived independently. This use complies with the AAS policy that such tools are not authors and that responsibility for accuracy remains with the listed authors \citep{Vishniac2025}.\footnote{The \LaTeX\ source, figure scripts, reference tables, and the scripts that regenerate the quadratures, fits, and tables are at \url{https://github.com/guillochon/roche-lobe}. A persistent archive will be deposited at Zenodo on acceptance.}
 \end{acknowledgments}
 
 \software{NumPy \citep{numpy2020}, SciPy \citep{scipy2020}, SymPy \citep{sympy2017}, mpmath \citep{mpmath}, Matplotlib \citep{matplotlib2007}.}
@@ -399,9 +423,53 @@ which is equation~(\ref{eq:R0}). The identity $1/r+\tfrac12r^2\sin^2\theta=3/2$ 
 
 Along a ray, $U_0=9/2$ reads $A\rho^3-\tfrac92\rho+3=0$ with $A=\tfrac12(3n_\xi^2-n_\zeta^2)$. For $A>0$ substitute $\rho=(2/m)\cos\psi$ with $m=\sqrt{2A/3}$; the cubic becomes $\cos3\psi=-m$, and the branch continuous with $\rho=2/3$ at $m=0$ is $\psi=\pi/2-\tfrac13\arcsin m$, giving equation~(\ref{eq:hillsurf}). For $A<0$ the same steps with $\cosh$ give the hyperbolic form. Differentiating $3/\rho+A\rho^2=c$ with respect to $c$ and using $A\rho^3=\tfrac92\rho-3$ on the critical surface gives $\partial\rho/\partial c=\rho^2/[9(\rho-1)]$, which yields equation~(\ref{eq:V1}).
 
+\section{The $L_2$ cap and $a_{3/2}$}\label{app:a32}
+
+Place the origin of local coordinates $(s_\xi,s_\eta,s_\zeta)$ at the unperturbed $L_2$, with $s_\xi=\xi+1$ toward $M_1$. The Hessian of $U_0$ there is $\operatorname{diag}(9,-3,-4)$, so
+\begin{equation}
+U_0=\frac92+\frac92 s_\xi^2-\frac32 s_\eta^2-2s_\zeta^2+\cdots.
+\end{equation}
+The octupole is $U_1(L_2)=-1$ and $U_1(L_1)=+1$, so the lobe level is $9/2+\epsilon$ while $U(L_2)=9/2-\epsilon$. Near $L_2$, with $U_1\simeq-1$, the surface $U_0+\epsilon U_1=9/2+\epsilon$ becomes the hyperboloid of two sheets
+\begin{equation}
+9s_\xi^2-3s_\eta^2-4s_\zeta^2=4\epsilon,
+\end{equation}
+replacing the unperturbed cone $9s_\xi^2-3s_\eta^2-4s_\zeta^2=0$. Introduce the elliptical radius $w$ by $w^2=3s_\eta^2+4s_\zeta^2$, so that $s_\xi=\sqrt{w^2+4\epsilon}/3$ on the hyperboloid and $s_\xi=w/3$ on the cone. The parametrisation $s_\eta=(w/\sqrt3)\cos\phi$, $s_\zeta=(w/2)\sin\phi$ has Jacobian $w/(2\sqrt3)$; integrating $\dd\phi$ over $2\pi$ gives the area element $\dd A=(\pi/\sqrt3)\,w\,\dd w$. Cross-sections of the hyperboloid at fixed $s_\xi$ are ellipses of semi-axes $\sqrt{(9s_\xi^2-4\epsilon)/3}$ and $\sqrt{(9s_\xi^2-4\epsilon)/4}$, whose area $\pi(9s_\xi^2-4\epsilon)/(2\sqrt3)$ produces the same prefactor.
+
+The linearised surface is the first-order expansion of the hyperboloid, $s_\xi^{\rm lin}=w/3+2\epsilon/(3w)$. A larger $s_\xi$ moves the surface toward $M_1$ and shrinks the lobe, so the volume restored when the linearised surface is replaced by the hyperboloid is
+\begin{equation}
+\Delta V=\int\bigl(s_\xi^{\rm lin}-s_\xi^{\rm hyp}\bigr)\,\dd A=\frac{\pi}{3\sqrt3}\int_0^\infty\Bigl[w+\frac{2\epsilon}{w}-\sqrt{w^2+4\epsilon}\Bigr]w\,\dd w.
+\end{equation}
+Each term separately diverges: $\int w\cdot w\,\dd w$ at large $w$, and $\int(2\epsilon/w)\,w\,\dd w$ at both ends. Their combination converges, because $\sqrt{w^2+4\epsilon}=w+2\epsilon/w-2\epsilon^2/w^3+\cdots$. The subtracted $w$ piece is the unperturbed cone, already counted in $V_{\rm H}$; the subtracted $2\epsilon/w$ piece is the $O(\epsilon)$ displacement, already counted in $V_1$. What remains is the finite part, of order $\epsilon^{3/2}$. Substituting $w=2\sqrt\epsilon\,s$ gives
+\begin{equation}
+\int_0^\infty\Bigl[w+\frac{2\epsilon}{w}-\sqrt{w^2+4\epsilon}\Bigr]w\,\dd w=8\epsilon^{3/2}\int_0^\infty\bigl(s^2+\tfrac12-s\sqrt{s^2+1}\bigr)\,\dd s,
+\end{equation}
+and the definite integral equals $1/3$: the opposite integrand $s\sqrt{s^2+1}-s^2-1/2$ integrates to $-1/3$ from $0$ to $\infty$ (the combination $\tfrac13(s^2+1)^{3/2}-s^3/3-s/2$ is $-1/3$ at $s=0$ and vanishes at infinity). Hence $\Delta V=8\pi\epsilon^{3/2}/(9\sqrt3)$.
+
+At $L_1$ the Roche lobe is defined to pass through the saddle for every $\epsilon$. That saddle is nondegenerate (Hessian $\operatorname{diag}(9,-3,-4)$ after the $O(\epsilon)$ shift of its location), so the local cone varies smoothly with $\epsilon$ and produces no half-integer power.
+
+\subsection*{The $O(\epsilon^2)$ term}
+Write the exact surface near $L_2$ in ray coordinates, $\rho=1-x$, with $\vartheta$ the angle from the $-\xi$ axis and $\varphi$ the azimuth about it, so that $s_\xi=x+\tfrac12\vartheta^2+\ldots$ and $s_\perp=(1-x)\vartheta$. The condition $U_0+\epsilon U_1=\tfrac92+\epsilon-\tfrac12\epsilon^2$ becomes $9x^2-Q(\varphi)\vartheta^2+P=4\epsilon$, $Q=3\cos^2\varphi+4\sin^2\varphi$, where $P$ collects the terms of relative order $\sqrt\epsilon$: $9x\vartheta^2$, $-2Qx\vartheta^2$, the cubic terms $s_\xi^3$, $s_\xi s_\eta^2$, $s_\xi s_\zeta^2$ of $U_0$, and $-6\epsilon x$ from $\nabla U_1$. Every term of $P$ is odd in $x$, so the first-order correction $-P/(18x_0)$ to $x_0=\sqrt{4\epsilon+Q\vartheta^2}/3$ is a polynomial in $\epsilon$ and $\vartheta^2$. The volume inside the cone $\vartheta<\vartheta_1$ is therefore analytic in $\epsilon$ apart from the $\epsilon^{3/2}$ term of equation~(\ref{eq:dV32}), and its $\epsilon^2$ coefficient equals the term-by-term integral of the outer expansion, whose $\vartheta_1^{-1}$ divergence cancels against the outer integral over $\vartheta>\vartheta_1$. The $\epsilon^2$ coefficient of the full volume is thus the Hadamard finite part of the outer integral in the variable $\vartheta$, equation~(\ref{eq:V2red}). Even corrections (quartic terms of $U_0$, $\vartheta^4$ terms of the geometry, second iterates of $P$) are of relative order $\epsilon$ and first contribute at $O(\epsilon^{5/2})$.
+
 \section{Reference tables}\label{app:tables}
 
-Table~\ref{tab:ref} is the half-decade extract of the 73-point reference solution of Section~\ref{sec:num}. Tables~\ref{tab:deriv} and~\ref{tab:qcrit} give the logarithmic derivative and the conservative critical mass ratios used in Section~\ref{sec:deriv}.
+Table~\ref{tab:converge} is the convergence ladder of Section~\ref{sec:num}. Table~\ref{tab:ref} is the half-decade extract of the 73-point reference solution. Tables~\ref{tab:deriv} and~\ref{tab:qcrit} give the logarithmic derivative and the conservative critical mass ratios used in Section~\ref{sec:deriv}.
+
+\begin{deluxetable}{cccc}
+\tablewidth{\columnwidth}
+\tablecaption{Convergence of the reference solution. Columns: change in $\RL/a$ between successive quadrature orders, and the difference between the direct volume and the volume recovered from the surface integral, equation~(\ref{eq:vz}), at $n=400$.\label{tab:converge}}
+\tablehead{\colhead{$\qE$} & \colhead{$|\Delta R|_{100\to200}$} & \colhead{$|\Delta R|_{200\to400}$} & \colhead{$|R-R_{\rm vZ}|_{400}$}}
+\startdata
+$10^{-6}$ & $4\times10^{-15}$ & $7\times10^{-17}$ & $2\times10^{-16}$ \\
+$10^{-4}$ & $2\times10^{-14}$ & $3\times10^{-16}$ & $7\times10^{-16}$ \\
+$10^{-2}$ & $9\times10^{-14}$ & $1\times10^{-15}$ & $3\times10^{-15}$ \\
+$10^{-1}$ & $2\times10^{-13}$ & $3\times10^{-15}$ & $7\times10^{-15}$ \\
+$1$       & $3\times10^{-13}$ & $5\times10^{-15}$ & $1\times10^{-14}$ \\
+$10$      & $3\times10^{-13}$ & $4\times10^{-15}$ & $7\times10^{-15}$ \\
+$10^{2}$  & $3\times10^{-14}$ & $5\times10^{-16}$ & $2\times10^{-15}$ \\
+$10^{4}$  & $5\times10^{-16}$ & $1\times10^{-15}$ & $7\times10^{-15}$ \\
+$10^{6}$  & $4\times10^{-16}$ & $2\times10^{-15}$ & $9\times10^{-15}$ \\
+\enddata
+\end{deluxetable}
 
 \input{table_reference.tex}
 \input{table_derivative.tex}
