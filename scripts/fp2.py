@@ -1,7 +1,8 @@
 import mpmath as mp
 from fp import *
 mp.mp.dps = 28
-c = laurent(J_red)
+# exact subtraction constants (Appendix C): c-2 = (4/9) E(m=1/4), c-1 = 0 identically
+c = (mp.mpf(4)/9*mp.ellipe(mp.mpf(1)/4), mp.mpf(0))
 for vc in (mp.mpf('0.12'), mp.mpf('0.25'), mp.mpf('0.5')):
     print("vt_c =", vc, " FP =", mp.nstr(finite_part(J_red, pi, c[0], c[1], vt_c=vc), 14), flush=True)
 V2red = finite_part(J_red, pi, c[0], c[1])

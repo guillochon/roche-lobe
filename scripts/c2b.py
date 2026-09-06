@@ -1,3 +1,6 @@
+"""Independent numerical check of beta (Appendix A): Richardson extrapolation of the ray-form
+volume integral V(c), eq. (19), to 25 digits, followed by PSLQ. The analytic derivation is in
+c2_analytic.py; this script is retained as the check quoted in Section 3.1."""
 import mpmath as mp
 mp.mp.dps = 60
 pi=mp.pi

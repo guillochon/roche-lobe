@@ -74,6 +74,9 @@ if __name__ == "__main__":
         A2 = mp.matrix([[D**2, D**2*mp.log(D), D**mp.mpf(2.5), D**3, D**mp.mpf(3.5)] for D in Ds]); sol2 = mp.lu_solve(A2, mp.matrix(ys))
         print("shift: with D^2 ln D allowed: T =", mp.nstr(sol2[0], 10), " log coeff =", mp.nstr(sol2[1], 4))
     else:
-        c = laurent(J_red); print("red Laurent: c-2=%s  c-1=%s  c0=%s" % tuple(mp.nstr(x, 12) for x in c[:3]), flush=True)
-        FP = finite_part(J_red, pi, c[0], c[1])
+        c = laurent(J_red); print("red Laurent (numerical fit): c-2=%s  c-1=%s  c0=%s" % tuple(mp.nstr(x, 12) for x in c[:3]), flush=True)
+        # exact subtraction constants (Appendix C): c-2 = (4/9) E(m=1/4), c-1 = 0 identically
+        cm2 = mp.mpf(4)/9*mp.ellipe(mp.mpf(1)/4); cm1 = mp.mpf(0)
+        print("red Laurent (exact):           c-2=%s  c-1=0" % mp.nstr(cm2, 12), flush=True)
+        FP = finite_part(J_red, pi, cm2, cm1)
         print("V2_red = FP =", mp.nstr(FP, 15), "   (numerical reduced model: -1.2606 +/- 0.0003)")
