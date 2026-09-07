@@ -130,6 +130,14 @@ def main():
 
     qs = np.array([1e-9, 3e-9, 1e-8, 3e-8, 1e-7, 3e-7])
     Rs = np.array([Req(1 / x, npts=200) for x in qs])
+    small = HERE / "roche_lobe_small_qE.dat"
+    np.savetxt(
+        small,
+        np.column_stack([qs, Rs]),
+        header="q_E=M1/M2   R_L/a\nSix points below the 73-point n=300 table, used in §3.2 (19 points over 1e-9..1e-4).\nDouble precision, npts=200 (scripts/analysis.py).",
+        comments="# ",
+    )
+    print("wrote", small)
     m = qE >= 1e2
     d = R0 - R[m]
     rem = d - K * qE[m] ** (-2 / 3) * np.log(qE[m]) - c2 * qE[m] ** (-2 / 3)

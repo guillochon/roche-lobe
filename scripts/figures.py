@@ -158,9 +158,9 @@ fig.savefig(HERE / 'fig_fits.pdf', bbox_inches='tight'); plt.close(fig)
 legend_kw = dict(frameon=True, facecolor='white', framealpha=0.8,
                  edgecolor='none', fontsize=6.4, labelspacing=0.32)
 fig, ax = plt.subplots(1, 2, figsize=(7.0, 2.6))
-# high-qE points computed with the reference integrator (npts=120)
-qe_ext = np.array([1e7, 1e8, 1e9])
-R_ext = np.array([0.814689932014, 0.814836734593, 0.814873679389])
+# points above the 73-point n=300 table (npts=120)
+hi = np.loadtxt(HERE / "roche_lobe_large_qE.dat")
+qe_ext, R_ext = hi[:, 0], hi[:, 1]
 m = qE >= 30
 qe_a = np.concatenate([qE[m], qe_ext]); R_a = np.concatenate([R[m], R_ext])
 S = (R0 - R_a) * qe_a**(2 / 3) - K * np.log(qe_a) - c2
@@ -190,7 +190,9 @@ for sp in axins.spines.values():
 axins.patch.set_alpha(0.95)
 axins.legend(loc='upper left', frameon=True, facecolor='white',
              framealpha=0.8, edgecolor='none', fontsize=5.5, labelspacing=0.2)
-qs = np.array(D['qs']); Rs = np.array(D['Rs']); qq = np.concatenate([qs, qE[qE <= 1e-3]]); RR = np.concatenate([Rs, R[qE <= 1e-3]]); tt = qq**(1/3)
+lo = np.loadtxt(HERE / "roche_lobe_small_qE.dat")
+qs, Rs = lo[:, 0], lo[:, 1]
+qq = np.concatenate([qs, qE[qE <= 1e-3]]); RR = np.concatenate([Rs, R[qE <= 1e-3]]); tt = qq**(1/3)
 yy = (RR/(C*tt) - 1)/tt
 ax[1].plot(tt, yy, 'k.', ms=4, label='reference')
 ts = np.linspace(0, 0.06, 200)

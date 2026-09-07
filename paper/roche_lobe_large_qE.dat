@@ -1,0 +1,6 @@
+# q_E=M1/M2   R_L/a
+# Three points above the 73-point n=300 table, used in Figure 2a.
+# Reference integrator, npts=120 (scripts/figures.py).
+1.000000000000000e+07  8.146899320140000e-01
+1.000000000000000e+08  8.148367345930000e-01
+1.000000000000000e+09  8.148736793890000e-01
