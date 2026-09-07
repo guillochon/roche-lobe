@@ -44,6 +44,8 @@ def V_cyl(c):
     xm, xp, x3 = roots(c)
     return 4*pi*mp.quad(lambda x: mp.sqrt(abs(g(x,c)))/(c-x), [0, xm])
 def V_paper(c):
+    # Eq. (19): (sin^2 theta/2) r^3 - c r + 1 = 0 maps to
+    # 3s - 4s^3 = kappa^{-1/2} sin theta with kappa = (2c/3)^3.
     kap=(2*c/3)**3; k12=1/mp.sqrt(kap)
     f=lambda ph: mp.sin(ph)/(3-4*mp.sin(mp.asin(k12*mp.sin(ph))/3)**2)**3
     return 32*pi/(3*kap)*mp.quad(f,[0,pi/4,pi/2-mp.mpf('1e-2'),pi/2-mp.mpf('1e-4'),pi/2-mp.mpf('1e-6'),pi/2])

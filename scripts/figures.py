@@ -154,7 +154,7 @@ ax[1].axvspan(-2, 2, color='0.92', zorder=0); ax[1].text(-1.9, 4.5, 'classical\n
 ax[1].set_xlabel(r'$\log_{10} q_E$,  $q_E=M_1/M_2$'); ax[1].set_ylabel('relative error (%)'); ax[1].legend(frameon=False, fontsize=6, loc='lower right', ncol=1)
 fig.savefig(HERE / 'fig_fits.pdf', bbox_inches='tight'); plt.close(fig)
 
-# ---------------- Fig 5: asymptotics ----------------
+# ---------------- Fig 2: asymptotics ----------------
 legend_kw = dict(frameon=True, facecolor='white', framealpha=0.8,
                  edgecolor='none', fontsize=6.4, labelspacing=0.32)
 fig, ax = plt.subplots(1, 2, figsize=(7.0, 2.6))
@@ -163,39 +163,41 @@ qe_ext = np.array([1e7, 1e8, 1e9])
 R_ext = np.array([0.814689932014, 0.814836734593, 0.814873679389])
 m = qE >= 30
 qe_a = np.concatenate([qE[m], qe_ext]); R_a = np.concatenate([R[m], R_ext])
-x = np.log(qe_a); y = (R0 - R_a)*qe_a**(2/3)
-ax[0].plot(x, y, 'k.', ms=4, label='reference')
-xs = np.linspace(2, 21, 80)
-# y = K ln qE + c2 + (c3 + c3L ln qE) qE^{-1/3}
-two = K*xs + c2
-ax[0].plot(xs, two, 'C3-', lw=0.9, label=r'$K\ln q_E + c_2$ (both exact)')
-ax[0].plot(xs, two + (D['c3'] + D['c3L']*xs)*np.exp(-xs/3), 'C3--', lw=0.9,
-           label=r'+ fitted $O(q_E^{-1/3})$ terms')
-qe_ = np.exp(xs); egg_ = 0.49*qe_**(2/3)/(0.6*qe_**(2/3)+np.log(1+qe_**(1/3))); ax[0].plot(xs, (R0-egg_)*qe_**(2/3), 'C0--', lw=0.9, label='Eggleton (1983) formula')
-ax[0].set_xlabel(r'$\ln q_E$'); ax[0].set_ylabel(r'$(R_0-R_L/a)\,q_E^{2/3}$')
-ax[0].legend(loc='lower left', **legend_kw)
-ax[0].set_title(r'dominant-star limit $q_E\to\infty$', fontsize=8)
-# S(q_E) inset: both exact coefficients subtracted
 S = (R0 - R_a) * qe_a**(2 / 3) - K * np.log(qe_a) - c2
 m_s = qe_a >= 1e3
 xx = qe_a[m_s]**(-1 / 3) * np.log(qe_a[m_s])
-axins = ax[0].inset_axes([0.30, 0.50, 0.36, 0.40])
-axins.plot(xx, S[m_s], 'k.', ms=3)
-axins.axhline(0, color='C3', lw=0.7)
-axins.set_xlim(left=0)
-axins.set_xlabel(r'$q_E^{-1/3}\ln q_E$', fontsize=5.5, labelpad=0.5)
-axins.set_ylabel(r'$S$', fontsize=5.5, labelpad=0.5)
+ax[0].plot(xx, S[m_s], 'k.', ms=4, label='reference')
+ax[0].axhline(0, color='C3', lw=0.7, label=r'$S\to0$')
+ax[0].set_xlim(left=0)
+ax[0].set_xlabel(r'$q_E^{-1/3}\ln q_E$')
+ax[0].set_ylabel(r'$S(q_E)$')
+ax[0].legend(loc='upper right', **legend_kw)
+ax[0].set_title(r'dominant-star limit $q_E\to\infty$', fontsize=8)
+# inset: linear combination with exact K, c2
+x = np.log(qe_a)
+y = (R0 - R_a) * qe_a**(2 / 3)
+axins = ax[0].inset_axes([0.38, 0.18, 0.55, 0.42])
+axins.plot(x, y, 'k.', ms=3)
+xs = np.linspace(x.min(), x.max(), 80)
+two = K * xs + c2
+axins.plot(xs, two, 'C3-', lw=0.8, label=r'$K\ln q_E+c_2$')
+axins.plot(xs, two + (D['c3'] + D['c3L'] * xs) * np.exp(-xs / 3), 'C3--', lw=0.8)
+axins.set_xlabel(r'$\ln q_E$', fontsize=5.5, labelpad=0.5)
+axins.set_ylabel(r'$(R_0-R_L/a)\,q_E^{2/3}$', fontsize=5.5, labelpad=0.5)
 axins.tick_params(labelsize=5, pad=1.0, direction='in')
 for sp in axins.spines.values():
     sp.set_linewidth(0.6)
 axins.patch.set_alpha(0.95)
+axins.legend(loc='upper left', frameon=True, facecolor='white',
+             framealpha=0.8, edgecolor='none', fontsize=5.5, labelspacing=0.2)
 qs = np.array(D['qs']); Rs = np.array(D['Rs']); qq = np.concatenate([qs, qE[qE <= 1e-3]]); RR = np.concatenate([Rs, R[qE <= 1e-3]]); tt = qq**(1/3)
 yy = (RR/(C*tt) - 1)/tt
 ax[1].plot(tt, yy, 'k.', ms=4, label='reference')
 ts = np.linspace(0, 0.06, 200)
 ax[1].axhline(a1, color='C0', ls='--', lw=0.9, label=r'$a_1$ (analytic)')
 ax[1].plot(ts, a1 + a32*np.sqrt(ts), 'C2-.', lw=0.9, label=r'$a_1+a_{3/2}\sqrt{t}$ (analytic)')
-ax[1].plot(ts, a1 + a32*np.sqrt(ts) + a2*ts + D['a52']*ts**1.5, 'C3-', lw=0.9, label=r'$+\,a_2 t$ (exact) $+\,a_{5/2}t^{3/2}$ (fitted)')
+ax[1].plot(ts, a1 + a32*np.sqrt(ts) + a2*ts + D['a52']*ts**1.5, 'C3-', lw=0.9,
+           label=r'$+\,a_2 t$ (quadrature) $+\,a_{5/2}t^{3/2}$ (fitted)')
 ax[1].set_xlabel(r'$t=q_E^{1/3}$'); ax[1].set_ylabel(r'$[R_L/(C a t)-1]/t$'); ax[1].set_xlim(0, 0.06); ax[1].set_ylim(-0.27, -0.228)
 ax[1].legend(loc='lower right', **legend_kw); ax[1].set_title(r'Hill limit $q_E\to0$', fontsize=8)
 fig.tight_layout(); fig.savefig(HERE / 'fig_asymptotics.pdf'); plt.close(fig)

@@ -9,6 +9,15 @@ print("q=2 rational roots:", sp.roots(p2, x, filter="Q"))
 print("q=2 factor_list:", sp.factor_list(p2.as_expr()))
 G2, alt2 = sp.galois_group(p2)
 print("q=2 galois_group:", G2, "order", G2.order(), "solvable", G2.is_solvable, "alt", alt2)
+
+print("\n=== Dedekind certificate at q=2 ===")
+f2 = 3*x**5 - 8*x**4 + 7*x**3 - x**2 + 2*x - 1
+pf2 = sp.Poly(f2, x, domain=sp.ZZ)
+disc = pf2.discriminant()
+print("polynomial:", f2)
+print("discriminant:", int(disc), "square?", sp.integer_nthroot(int(disc), 2)[1])
+print("irreducible mod 5:", sp.Poly(f2, x, modulus=5).is_irreducible)
+print("factor mod 17:", sp.factor(f2, modulus=17))
 for qq in [sp.Integer(2), sp.Rational(1, 2), sp.Integer(3), sp.Rational(104, 19), sp.Integer(1)]:
     p = sp.Poly(sp.expand(P.subs(q, qq) * sp.denom(sp.nsimplify(qq))), x)
     fl = sp.factor_list(p.as_expr())[1]
