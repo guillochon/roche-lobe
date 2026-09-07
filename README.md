@@ -23,13 +23,14 @@ from `paper/`. `aastex702.cls`, `orcid-ID.png`, `CoFirstAuthor.png`, and `aasjou
 - `paper/fig_surface3d.png` — three-dimensional lobe surfaces
 - `paper/roche_lobe_reference_table.dat` — 73-point reference solution
 - `paper/analysis.json`, `paper/derivative_reference.txt` — cached reference used by the figure scripts
+- `paper/vred.txt`, `paper/vred_n200.txt` — reduced-model volumes for the $V_2^{\rm red}$ check
 - `scripts/fast.py` — $L_1$, surface, and volume solver used by the figures
 - `scripts/reference.py` — extended-precision reference volumes
 - `scripts/figures.py` — writes `fig_sections.pdf`, `fig_surface3d.png`, `fig_limits.pdf`, `fig_asymptotics.pdf`
 - `scripts/derivative_analysis.py` — writes `fig_fits_deriv.pdf` and the derivative tables
 - `scripts/c2_analytic.py` — analytic derivation of $\beta$ and $c_2$ from the cylindrical volume integral (Appendix A), with numerical checks; `scripts/c2b.py` — independent 25-digit Richardson check
 - `scripts/a2_symbolic.py` — parity of the exact ray equation near $L_2$, the inner corrections $X_1$, $X_2$, and the symbolic Laurent series of the $O(\epsilon^2)$ integrand (Appendix C)
-- `scripts/v2u2.py`, `scripts/fp.py`, `scripts/fp2.py`, `scripts/hillred.py`, `scripts/v2red_highn.py` — $a_2$ quadratures: $V_2^{(U_2)}$, the finite part $V_2^{\rm red}$ with exact subtraction constants, and the independent reduced-model Richardson check
+- `scripts/v2u2.py`, `scripts/fp.py`, `scripts/fp2.py`, `scripts/hillred.py`, `scripts/v2red_highn.py`, `scripts/v2red_from_vred.py` — $a_2$ quadratures: $V_2^{(U_2)}$, the finite part $V_2^{\rm red}$ with exact subtraction constants, and the independent reduced-model Richardson check (`paper/vred.txt`, `paper/vred_n200.txt`)
 - `scripts/reproduce.py` — driver for the commands below
 
 ## Regenerating figures from cached data
@@ -56,6 +57,6 @@ from the repository root. Both figure scripts read `paper/analysis.json`; `deriv
 | `--derivative` | $D=\partial\ln(R_L/a)/\partial\ln q_E$ (`make_derivative_reference.py`) | hours |
 | `--figures` | all manuscript figures from the caches | minutes |
 
-Nelder–Mead settings: least-squares start, then `method='Nelder-Mead'` on the maximum relative error, `xatol=1e-11`, `fatol=1e-13`, `maxiter=40000` (`analysis.py`). Reference volumes: 80-bit `longdouble`, 70 bisection steps, panel corner at angular distance $4\epsilon$ from $L_1$ (`reference.py`). Hill quadratures: `mpmath` `dps=40` (`hill3.py`) and `dps=30` (`a1.py`). Closure: `sympy` for the symbolic steps (`c2_analytic.py`, `a2_symbolic.py`); `mpmath` `dps=40` (`c2_analytic.py`), `dps=60` (`c2b.py`), `dps=25` (`v2u2.py`), `dps=28` (`fp.py`, `fp2.py`); reduced-model volumes in `hillred.py` / `paper/vred.txt`. High-$q_E$ points $10^{7,8,9}$ used in Figure 2a are listed in `figures.py`.
+Nelder–Mead settings: least-squares start, then `method='Nelder-Mead'` on the maximum relative error, `xatol=1e-11`, `fatol=1e-13`, `maxiter=40000` (`analysis.py`). Reference volumes: 80-bit `longdouble`, 70 bisection steps, panel corner at angular distance $4\epsilon$ from $L_1$ (`reference.py`). Hill quadratures: `mpmath` `dps=40` (`hill3.py`) and `dps=30` (`a1.py`). Closure: `sympy` for the symbolic steps (`c2_analytic.py`, `a2_symbolic.py`); `mpmath` `dps=40` (`c2_analytic.py`), `dps=60` (`c2b.py`), `dps=25` (`v2u2.py`), `dps=28` (`fp.py`, `fp2.py`); reduced-model volumes in `hillred.py` / `paper/vred.txt` (`n=90`) and `v2red_highn.py` / `paper/vred_n200.txt` (`n=200`). `scripts/v2red_from_vred.py` prints the Richardson intercepts. High-$q_E$ points $10^{7,8,9}$ used in Figure 2a are listed in `figures.py`.
 
 Python ≥3.10; see `--versions` for numpy/scipy/matplotlib/mpmath/sympy. The 73-point table and derivative file are platform-sensitive at the $10^{-15}$ level because of `longdouble`.
