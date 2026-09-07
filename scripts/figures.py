@@ -175,20 +175,17 @@ qe_ = np.exp(xs); egg_ = 0.49*qe_**(2/3)/(0.6*qe_**(2/3)+np.log(1+qe_**(1/3))); 
 ax[0].set_xlabel(r'$\ln q_E$'); ax[0].set_ylabel(r'$(R_0-R_L/a)\,q_E^{2/3}$')
 ax[0].legend(loc='lower left', **legend_kw)
 ax[0].set_title(r'dominant-star limit $q_E\to\infty$', fontsize=8)
-# local-slope inset: d[(R0-RL) qE^{2/3}]/d ln qE vs 1/ln qE
-m_s = qe_a >= 1e4
-xs_s, ys_s = np.log(qe_a[m_s]), y[m_s]
-sl_s = np.gradient(ys_s, xs_s)
-axins = ax[0].inset_axes([0.30, 0.52, 0.28, 0.38])
-axins.plot(1 / xs_s, sl_s, 'k.', ms=3)
-axins.axhline(K, color='C3', lw=0.7)
-axins.axhline(0.454, color='C0', ls='--', lw=0.7)
-axins.set_xlim(0, 0.12); axins.set_ylim(0.40, 0.70)
-axins.set_xlabel('')
-axins.set_ylabel('')
-axins.tick_params(labelsize=5, pad=1.2, direction='in')
-axins.set_xticks([0, 0.06, 0.12])
-axins.set_yticks([0.45, 0.55, 0.65])
+# S(q_E) inset: both exact coefficients subtracted
+S = (R0 - R_a) * qe_a**(2 / 3) - K * np.log(qe_a) - c2
+m_s = qe_a >= 1e3
+xx = qe_a[m_s]**(-1 / 3) * np.log(qe_a[m_s])
+axins = ax[0].inset_axes([0.30, 0.50, 0.36, 0.40])
+axins.plot(xx, S[m_s], 'k.', ms=3)
+axins.axhline(0, color='C3', lw=0.7)
+axins.set_xlim(left=0)
+axins.set_xlabel(r'$q_E^{-1/3}\ln q_E$', fontsize=5.5, labelpad=0.5)
+axins.set_ylabel(r'$S$', fontsize=5.5, labelpad=0.5)
+axins.tick_params(labelsize=5, pad=1.0, direction='in')
 for sp in axins.spines.values():
     sp.set_linewidth(0.6)
 axins.patch.set_alpha(0.95)

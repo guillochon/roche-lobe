@@ -10,7 +10,7 @@ six-coefficient fit constrained by those asymptotics.
 pdflatex roche_lobe && bibtex roche_lobe && pdflatex roche_lobe && pdflatex roche_lobe
 ```
 
-from `paper/`. `aastex702.cls`, `orcid-ID.png`, and `aasjournalv7.bst` are included.
+from `paper/`. `aastex702.cls`, `orcid-ID.png`, `CoFirstAuthor.png`, and `aasjournalv7.bst` are included.
 
 ## Files
 
@@ -29,7 +29,7 @@ from `paper/`. `aastex702.cls`, `orcid-ID.png`, and `aasjournalv7.bst` are inclu
 - `scripts/derivative_analysis.py` — writes `fig_fits_deriv.pdf` and the derivative tables
 - `scripts/c2_analytic.py` — analytic derivation of $\beta$ and $c_2$ from the cylindrical volume integral (Appendix A), with numerical checks; `scripts/c2b.py` — independent 25-digit Richardson check
 - `scripts/a2_symbolic.py` — parity of the exact ray equation near $L_2$, the inner corrections $X_1$, $X_2$, and the symbolic Laurent series of the $O(\epsilon^2)$ integrand (Appendix C)
-- `scripts/v2u2.py`, `scripts/fp.py`, `scripts/fp2.py`, `scripts/hillred.py` — $a_2$ quadratures: $V_2^{(U_2)}$, the finite part $V_2^{\rm red}$ with exact subtraction constants, and the reduced-model check
+- `scripts/v2u2.py`, `scripts/fp.py`, `scripts/fp2.py`, `scripts/hillred.py`, `scripts/v2red_highn.py` — $a_2$ quadratures: $V_2^{(U_2)}$, the finite part $V_2^{\rm red}$ with exact subtraction constants, and the independent reduced-model Richardson check
 - `scripts/reproduce.py` — driver for the commands below
 
 ## Regenerating figures from cached data
@@ -49,7 +49,7 @@ from the repository root. Both figure scripts read `paper/analysis.json`; `deriv
 | command | what it rebuilds | runtime |
 |---|---|---|
 | `--quadratures` | $V_H$ (`hill3.py`), $V_1$ (`a1.py`), reduced-model $8\pi/(9\sqrt{3})$ (`hillpert.py`), $R_0$ (`limit_q0.py`) | minutes |
-| `--closure` | $\beta$ and $c_2$ (`c2_analytic.py`, checked by `c2b.py`), $L_2$ parity and Laurent series (`a2_symbolic.py`), $V_2^{(U_2)}$ (`v2u2.py`), $V_2^{\rm red}$ and $a_2$ (`fp.py`, `fp2.py`) | ~1 hour |
+| `--closure` | $\beta$ and $c_2$ (`c2_analytic.py`, checked by `c2b.py`), $L_2$ parity and Laurent series (`a2_symbolic.py`), $V_2^{(U_2)}$ (`v2u2.py`), $V_2^{\rm red}$ and $a_2$ (`fp.py`, `fp2.py`); independent reduced-model Richardson (`v2red_highn.py`) | ~1 hour |
 | `--galois` | $L_1$ Galois groups (`checks.py`) | seconds |
 | `--analysis` | minimax coefficients, published-formula errors, $q_E<10^{-6}$ points → `analysis.json` | minutes |
 | `--reference` | 73-point table, `npts=300` (`reference.py table`) | hours |

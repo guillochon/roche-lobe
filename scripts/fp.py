@@ -79,4 +79,4 @@ if __name__ == "__main__":
         cm2 = mp.mpf(4)/9*mp.ellipe(mp.mpf(1)/4); cm1 = mp.mpf(0)
         print("red Laurent (exact):           c-2=%s  c-1=0" % mp.nstr(cm2, 12), flush=True)
         FP = finite_part(J_red, pi, cm2, cm1)
-        print("V2_red = FP =", mp.nstr(FP, 15), "   (numerical reduced model: -1.2606 +/- 0.0003)")
+        print("V2_red = FP =", mp.nstr(FP, 15), "   (reduced-model Richardson, n=200: -1.26069)")

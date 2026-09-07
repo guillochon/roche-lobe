@@ -91,6 +91,7 @@ def main() -> None:
         run("fp.py", ["red"])
         run("fp.py", ["shift"])
         run("fp2.py")
+        run("v2red_highn.py")
     if args.reference:
         run("reference.py", ["table"])
     if args.derivative:

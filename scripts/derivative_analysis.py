@@ -307,7 +307,9 @@ def main():
     lines.append(
         r"\tablehead{\colhead{$\qE$} & \colhead{$D_{\rm ref}$} & "
         r"\colhead{Eggleton} & \colhead{Leahy} & \colhead{Qi} & "
-        r"\colhead{new 2} & \colhead{new 6} & \colhead{$\zeta_L^{\rm ref}$} \\ "
+        r"\colhead{(36)+(38)} & "
+        r"\colhead{(36)+(39)} & "
+        r"\colhead{$\zeta_L^{\rm ref}$} \\ "
         r"\colhead{} & \colhead{} & \colhead{(\%)} & \colhead{(\%)} & "
         r"\colhead{(\%)} & \colhead{(\%)} & \colhead{(\%)} & \colhead{}}"
     )
@@ -355,6 +357,10 @@ def main():
         r"\tablenotetext{a}{Outside the Leahy \& Leahy (2015) calibration "
         r"$0.01\le q\le 100$ ($10^{-2}\le\qE\le10^{2}$); the $+22\%$ is the "
         r"onset of the large-$\qE$ divergence, not a mid-range residual.}"
+    )
+    lines.append(
+        r"\tablecomments{Columns (36)+(38) and (36)+(39) are "
+        r"equation (36) with (38) and with (39).}"
     )
     lines.append(r"\end{deluxetable}")
     tex = os.path.join(HERE, "table_derivative.tex")
